@@ -1,0 +1,2 @@
+# LazyLanguages.nvim
+
