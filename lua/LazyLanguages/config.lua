@@ -41,9 +41,12 @@ M.setup = function(opts)
   if config.languages_file ~= nil then
     local path = vim.fn.stdpath 'config'
     config.languages_file = path .. utils.path_separator .. config.languages_file:gsub('%.', utils.path_separator) .. '.lua'
-    -- TODO: More error handling of error case where file not present
-    for _, language in ipairs(dofile(config.languages_file)) do
-      enabled_langs[language] = true
+    if utils.file_exists(config.languages_file) then
+      for _, language in ipairs(dofile(config.languages_file)) do
+        enabled_langs[language] = true
+      end
+    else
+      utils.notify("The languages override file '" .. config.languages_file .. "' does not exists", { level = vim.log.levels.WARN })
     end
   end
   config.languages = vim.tbl_keys(enabled_langs)
