@@ -1,0 +1,2 @@
+---@meta
+--# selene: allow(unused_variable)
