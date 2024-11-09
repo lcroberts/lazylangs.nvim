@@ -17,10 +17,10 @@ local config = {
   ---@type string | nil
   languages_file = nil,
 
+  -- TODO: Figure out correct order for these
   ---Are mason packages for languages automatically installed
   ---@type boolean
   mason_install = false,
-  ---
   ---Are mason packages for languages automatically updated
   ---@type boolean
   mason_update = false,
@@ -31,8 +31,6 @@ M.setup = function(opts)
   opts = opts or {}
   config = vim.tbl_deep_extend('keep', opts, config)
 
-  config.override_path = vim.fn.stdpath 'config' .. utils.path_separator .. config.override_path:gsub('%.', utils.path_separator)
-
   -- Merge languages and languages in language_file without duplication
   local enabled_langs = {}
   for _, language in ipairs(config.languages) do
@@ -40,13 +38,14 @@ M.setup = function(opts)
   end
   if config.languages_file ~= nil then
     local path = vim.fn.stdpath 'config'
-    config.languages_file = path .. utils.path_separator .. config.languages_file:gsub('%.', utils.path_separator) .. '.lua'
-    if utils.file_exists(config.languages_file) then
-      for _, language in ipairs(dofile(config.languages_file)) do
+    local languages_file = path ..
+        utils.path_separator .. config.languages_file:gsub('%.', utils.path_separator) .. '.lua'
+    if utils.file_exists(languages_file) then
+      for _, language in ipairs(dofile(languages_file)) do
         enabled_langs[language] = true
       end
     else
-      utils.notify("The languages override file '" .. config.languages_file .. "' does not exists", { level = vim.log.levels.WARN })
+      utils.notify("The override file at '" .. languages_file .. "' does not exists", { level = vim.log.levels.WARN })
     end
   end
   config.languages = vim.tbl_keys(enabled_langs)
