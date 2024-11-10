@@ -12,7 +12,8 @@
 ---@field server_configuration ll.ServerConfiguration
 
 ---@class ll.Language
----@field plugins table
----@field lsp ll.Lsp
----@field mason_packages string[]
----@field formatters table
+---@field plugins table?
+---@field lsp ll.Lsp?
+---@field mason_packages string[]?
+---@field formatters table?
+---@field setup function?

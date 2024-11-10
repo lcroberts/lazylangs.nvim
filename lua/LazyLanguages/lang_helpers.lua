@@ -1,5 +1,4 @@
 local utils = require 'LazyLanguages.utils'
-local config = require 'LazyLanguages.config'
 local conform = require 'conform'
 local mason_lspconfig = require('mason-lspconfig').get_mappings().lspconfig_to_mason
 local lspconfig = require 'lspconfig'
@@ -17,7 +16,12 @@ end
 
 local M = {}
 
-local expanded_override_path = vim.fn.stdpath 'config' .. utils.path_separator .. config.override_path:gsub('%.', utils.path_separator)
+local expanded_override_path = vim.fn.stdpath 'config'
+  .. utils.path_separator
+  .. 'lua'
+  .. utils.path_separator
+  .. vim.g.lazylangs.override_path:gsub('%.', utils.path_separator)
+
 ---Find and return a language table from the correct file
 ---@param language string
 ---@return ll.Language?
@@ -40,7 +44,7 @@ end
 M.language_setup = function()
   local mason_packages = {}
 
-  for _, language in ipairs(config.languages) do
+  for _, language in ipairs(vim.g.lazylangs.langs) do
     local language_table = M.get_language_table(language)
     if language_table == nil then
       goto continue
@@ -60,6 +64,11 @@ M.language_setup = function()
     for _, package in ipairs(language_table.mason_packages or {}) do
       table.insert(mason_packages, get_mason_package_name(package))
     end
+
+    if language_table.setup ~= nil then
+      language_table.setup()
+    end
+
     ::continue::
   end
 
