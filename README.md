@@ -11,5 +11,5 @@
 
 ## TODO
 
-- [ ] Add way to dump config file into override directory
+- [ ] Improve handling of unset override_path
 - [ ] Add test runners
