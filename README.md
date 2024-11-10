@@ -2,7 +2,6 @@
 
 ## Language TODO
 
-- Markdown
 - Javascript/typescript
 - PHP
 - C#
