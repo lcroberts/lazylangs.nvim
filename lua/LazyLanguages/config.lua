@@ -63,6 +63,12 @@ M.setup = function(opts)
       end
     end
     local dump_file_path = override_path .. utils.path_separator .. language .. '.lua'
+    if vim.uv.fs_stat(dump_file_path) then
+      if vim.fn.confirm(dump_file_path .. ' already exists, do you want to override it?', '&Yes\n&No', 2, 'Question') ~= 1 then
+        utils.notify 'Aborting config dump'
+        return
+      end
+    end
     local dump_file = io.open(dump_file_path, 'w')
     if dump_file == nil then
       utils.notify("There was an error opening '" .. dump_file_path .. "' to write out the config", { level = vim.log.levels.ERROR })
