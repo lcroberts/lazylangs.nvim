@@ -11,4 +11,5 @@
 
 ## TODO
 
+- [ ] Add way to dump config file into override directory
 - [ ] Add test runners

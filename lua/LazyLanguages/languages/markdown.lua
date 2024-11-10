@@ -10,6 +10,13 @@ return {
         enabled = false,
         preset = 'obsidian',
       },
+      config = function(_, opts)
+        require('render-markdown').setup(opts)
+        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+          pattern = { '*.md' },
+          command = 'RenderMarkdown',
+        })
+      end,
     },
   },
   lsp = {
@@ -19,10 +26,4 @@ return {
   mason_packages = {
     'marksman',
   },
-  setup = function()
-    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-      pattern = { '*.md' },
-      command = 'RenderMarkdown',
-    })
-  end,
 }
