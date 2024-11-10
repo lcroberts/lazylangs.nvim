@@ -72,6 +72,8 @@ M.language_setup = function()
     ::continue::
   end
 
+  vim.cmd 'filetype detect'
+
   local mason_package_string = table.concat(mason_packages, ' ')
   vim.api.nvim_create_user_command('LLMasonInstall', function()
     vim.cmd('MasonInstall ' .. mason_package_string)
