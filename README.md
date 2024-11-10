@@ -2,7 +2,6 @@
 
 ## Language TODO
 
-- Javascript/typescript
 - PHP
 - C#
 - Java
