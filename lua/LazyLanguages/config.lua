@@ -36,10 +36,10 @@ M.setup = function(opts)
   for _, language in ipairs(config.languages) do
     enabled_langs[language] = true
   end
+
   if config.languages_file ~= nil then
     local path = vim.fn.stdpath 'config'
-    local languages_file = path ..
-        utils.path_separator .. config.languages_file:gsub('%.', utils.path_separator) .. '.lua'
+    local languages_file = path .. utils.path_separator .. config.languages_file:gsub('%.', utils.path_separator) .. '.lua'
     if utils.file_exists(languages_file) then
       for _, language in ipairs(dofile(languages_file)) do
         enabled_langs[language] = true
@@ -48,7 +48,10 @@ M.setup = function(opts)
       utils.notify("The override file at '" .. languages_file .. "' does not exists", { level = vim.log.levels.WARN })
     end
   end
+
   config.languages = vim.tbl_keys(enabled_langs)
+
+  require('LazyLanguages.lang_helpers').language_setup()
 end
 
 return setmetatable(M, {
