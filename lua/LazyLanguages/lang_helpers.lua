@@ -20,13 +20,20 @@ local M = {}
 local expanded_override_path = vim.fn.stdpath 'config' .. utils.path_separator .. config.override_path:gsub('%.', utils.path_separator)
 ---Find and return a language table from the correct file
 ---@param language string
----@return ll.Language
+---@return ll.Language?
 M.get_language_table = function(language)
   local override_file = expanded_override_path .. utils.path_separator .. language .. '.lua'
   if utils.file_exists(override_file) then
     return dofile(override_file)
   else
-    return require('LazyLanguages.languages.' .. language)
+    local success, tbl = pcall(require, 'LazyLanguages.languages.' .. language)
+    ---@cast tbl ll.Language
+    if success then
+      return tbl
+    else
+      utils.notify("'" .. language .. "'" .. ' is not a supported language and has no override file provided', { once = true, level = vim.log.levels.WARN })
+      return nil
+    end
   end
 end
 
@@ -35,6 +42,9 @@ M.language_setup = function()
 
   for _, language in ipairs(config.languages) do
     local language_table = M.get_language_table(language)
+    if language_table == nil then
+      goto continue
+    end
     -- Merge conform formatters_by_ft with the formatter settings in language file
     local language_formatters = conform.formatters_by_ft[language] or {}
     language_formatters = vim.tbl_deep_extend('force', language_formatters, language_table.formatters or {})
@@ -50,6 +60,7 @@ M.language_setup = function()
     for _, package in ipairs(language_table.mason_packages or {}) do
       table.insert(mason_packages, get_mason_package_name(package))
     end
+    ::continue::
   end
 
   local mason_package_string = table.concat(mason_packages, ' ')
