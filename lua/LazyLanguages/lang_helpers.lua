@@ -52,7 +52,7 @@ end
 M.language_setup = function()
   local mason_packages = {}
 
-  for _, language in ipairs(vim.g.lazylangs.langs) do
+  for _, language in ipairs(vim.g.lazylangs.langs or {}) do
     local language_table = M.get_language_table(language)
     if language_table == nil then
       -- Error notification returned by get_language_table as it provides a more accurate error msg
