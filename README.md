@@ -11,5 +11,6 @@
 
 ## TODO
 
-- [ ] Improve handling of unset override_path
-- [ ] Add test runners
+- Add test runners
+- Improve Mason Install Commands
+- Automatic install/update of language servers
