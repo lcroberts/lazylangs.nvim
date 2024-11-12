@@ -6,6 +6,13 @@
 - Elixir
 - Ocaml
 - Odin
+- F#
+- Haskell
+- Kotlin
+- Scala
+- Ruby
+- Dart
+- Perl
 
 ### Missing Debugging
 - bash
