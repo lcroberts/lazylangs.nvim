@@ -12,5 +12,4 @@
 ## TODO
 
 - Add test runners
-- Improve Mason Install Commands
-- Automatic install/update of language servers
+- Automatic updating of language servers

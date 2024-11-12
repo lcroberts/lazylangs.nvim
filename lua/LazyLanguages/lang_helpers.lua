@@ -1,6 +1,7 @@
 local utils = require 'LazyLanguages.utils'
 local conform = require 'conform'
 local mason_lspconfig = require('mason-lspconfig').get_mappings().lspconfig_to_mason
+local mason_registry = require 'mason-registry'
 local lspconfig = require 'lspconfig'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
@@ -49,6 +50,26 @@ M.get_language_table = function(language)
   end
 end
 
+local show = vim.schedule_wrap(function(msg)
+  vim.notify(msg, vim.log.levels.INFO, { title = 'LazyLanguages' })
+end)
+
+local show_error = vim.schedule_wrap(function(msg)
+  vim.notify(msg, vim.log.levels.ERROR, { title = 'LazyLanguages' })
+end)
+
+---@param package Package
+local function package_install(package)
+  show(string.format("Installing Mason package '%s'", package.name))
+  package:once('install:success', function()
+    show(string.format("Mason package '%s' has been successfully installed", package.name))
+  end)
+  package:once('install:failed', function()
+    show_error(string.format("Mason package '%s' has failed to install", package.name), { level = vim.log.levels.ERROR })
+  end)
+  package:install { force = true }
+end
+
 M.language_setup = function()
   local mason_packages = {}
 
@@ -86,13 +107,17 @@ M.language_setup = function()
 
   vim.cmd 'filetype detect' -- Fixes single file not working on some language servers
 
-  local mason_package_string = table.concat(mason_packages, ' ')
   vim.api.nvim_create_user_command('LLMasonInstall', function()
-    vim.cmd('MasonInstall ' .. mason_package_string)
+    for _, package_name in ipairs(mason_packages) do
+      local package = mason_registry.get_package(package_name)
+      if not package:is_installed() then
+        package_install(package)
+      end
+    end
   end, {})
 
   vim.api.nvim_create_user_command('LLMasonClean', function()
-    vim.cmd('MasonUninstall ' .. mason_package_string)
+    vim.cmd('MasonUninstall ' .. table.concat(mason_packages, ' '))
   end, {})
 end
 

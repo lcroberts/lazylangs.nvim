@@ -5,10 +5,11 @@ local M = {}
 local config = {
   ---Are mason packages for languages automatically installed
   ---@type boolean
-  mason_install = false,
+  automatic_install = false,
+
   ---Are mason packages for languages automatically updated
   ---@type boolean
-  mason_update = false,
+  automatic_updates = false,
 }
 
 ---@param opts? ll.Config
@@ -17,6 +18,10 @@ M.setup = function(opts)
   config = vim.tbl_deep_extend('keep', opts, config)
 
   require('LazyLanguages.lang_helpers').language_setup()
+
+  if config.automatic_install then
+    vim.cmd 'LLMasonInstall'
+  end
 
   vim.api.nvim_create_user_command('LLDumpConfig', function(options)
     if type(vim.g.lazylangs.override_path) ~= 'string' then
