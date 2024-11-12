@@ -2,7 +2,6 @@
 
 ## Language TODO
 
-- Java
 - PHP
 - Elixir
 - Ocaml
