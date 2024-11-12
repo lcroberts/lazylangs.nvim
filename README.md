@@ -2,14 +2,17 @@
 
 ## Language TODO
 
-- PHP
-- C#
 - Java
+- PHP
 - Elixir
 - Ocaml
 - Odin
 
+### Missing Debugging
+- bash
+- javascript
+- lua
+
 ## TODO
 
-- Add test runners
 - Automatic updating of language servers
