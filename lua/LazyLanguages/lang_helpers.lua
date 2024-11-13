@@ -99,9 +99,14 @@ M.language_setup = function()
 
   vim.api.nvim_create_user_command('LLMasonInstall', function()
     for _, package_name in ipairs(mason_packages) do
-      local package = mason_registry.get_package(package_name)
-      if not package:is_installed() then
-        package_install(package)
+      local package_list = mason_registry.get_all_package_names()
+      if not vim.tbl_contains(package_list, package_name) then
+        utils.notify(string.format("'%s' is not a valid mason package.", package_name), { level = vim.log.levels.WARN })
+      else
+        local package = mason_registry.get_package(package_name)
+        if not package:is_installed() then
+          package_install(package)
+        end
       end
     end
   end, {})
