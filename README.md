@@ -40,4 +40,4 @@ configurations.
 
 ## TODO
 
-- Improve utils.notify
+- Refactor code

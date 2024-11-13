@@ -29,13 +29,13 @@ M.setup = function(opts)
 
   vim.api.nvim_create_user_command('LLDumpConfig', function(options)
     if type(vim.g.lazylangs.override_path) ~= 'string' then
-      utils.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config", { level = vim.log.levels.ERROR })
+      utils.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config", vim.log.levels.ERROR)
       return
     end
     local language = string.lower(options.args)
     local success, _ = pcall(require, 'LazyLanguages.languages.' .. language)
     if not success then
-      utils.notify("'" .. language .. "' is not a language supported by LazyLanguages", { level = vim.log.levels.WARN })
+      utils.notify(string.format("'%s' is not a language supported by LazyLanguages", language), vim.log.levels.WARN)
       return
     end
     local plugin_path = nil
@@ -46,14 +46,14 @@ M.setup = function(opts)
     end
 
     if plugin_path == nil then
-      utils.notify('Could not find the plugin directory for LazyLanguages.nvim', { level = vim.log.levels.ERROR })
+      utils.notify('Could not find the plugin directory for LazyLanguages.nvim', vim.log.levels.ERROR)
       return
     end
 
     local file_path = plugin_path .. ('/lua/LazyLanguages/languages/'):gsub('/', utils.path_separator) .. language .. '.lua'
     local file_handle = io.open(file_path, 'r')
     if file_handle == nil then
-      utils.notify("There was an error opening the file for '" .. language .. "'", { level = vim.log.levels.ERROR })
+      utils.notify(string.format("There was an error opening the file for '%s'", language), vim.log.levels.ERROR)
       return
     end
     local file_content = file_handle:read '*a'
@@ -67,7 +67,7 @@ M.setup = function(opts)
 
     if not vim.uv.fs_stat(override_path) then
       if not vim.fn.mkdir(override_path, 'p') then
-        utils.notify("There was an error creating directory'" .. override_path .. "'", { level = vim.log.levels.ERROR })
+        utils.notify(string.format("There was an error creating directory '%s'", override_path), vim.log.levels.ERROR)
         return
       end
     end
@@ -80,7 +80,7 @@ M.setup = function(opts)
     end
     local dump_file = io.open(dump_file_path, 'w')
     if dump_file == nil then
-      utils.notify("There was an error opening '" .. dump_file_path .. "' to write out the config", { level = vim.log.levels.ERROR })
+      utils.notify(string.format("There was an error opening '%s' to write out the config", dump_file_path), vim.log.levels.ERROR)
       return
     end
     dump_file:write(file_content)
@@ -96,7 +96,7 @@ M.setup = function(opts)
       end
 
       if plugin_path == nil then
-        utils.notify('Could not find the plugin directory for LazyLanguages.nvim', { level = vim.log.levels.ERROR })
+        utils.notify('Could not find the plugin directory for LazyLanguages.nvim', vim.log.levels.ERROR)
         return
       end
 

@@ -35,17 +35,13 @@ M.get_language_table = function(language)
   if success then
     return tbl
   else
-    utils.notify("'" .. language .. "'" .. error_msg, { once = true, level = vim.log.levels.WARN })
+    utils.notify_once(string.format("'%s' %s", language, error_msg), vim.log.levels.WARN)
     return nil
   end
 end
 
 local show = vim.schedule_wrap(function(msg)
   vim.notify(msg, vim.log.levels.INFO, { title = 'LazyLanguages' })
-end)
-
-local show_error = vim.schedule_wrap(function(msg)
-  vim.notify(msg, vim.log.levels.ERROR, { title = 'LazyLanguages' })
 end)
 
 ---@param package Package
@@ -55,7 +51,9 @@ local function package_install(package)
     show(string.format("Mason package '%s' has been successfully installed", package.name))
   end)
   package:once('install:failed', function()
-    show_error(string.format("Mason package '%s' has failed to install", package.name), { level = vim.log.levels.ERROR })
+    vim.schedule_wrap(function()
+      utils.notify(string.format("Mason package '%s' has failed to install", package.name), vim.log.levels.ERROR)
+    end)
   end)
   package:install { force = true }
 end
@@ -116,7 +114,7 @@ M.language_setup = function()
       local package_list = mason_registry.get_all_package_names()
 
       if not vim.tbl_contains(package_list, package_name) then
-        utils.notify(string.format("'%s' is not a valid mason package.", package_name), { level = vim.log.levels.WARN })
+        utils.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
         -- TODO: Print error

@@ -13,7 +13,7 @@ return {
       config = function(_, opts)
         require('render-markdown').setup(opts)
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-          pattern = { '*.md' },
+          pattern = { 'markdown' },
           command = 'RenderMarkdown',
         })
       end,

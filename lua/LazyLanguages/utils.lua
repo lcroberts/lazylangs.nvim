@@ -19,18 +19,44 @@ M.file_exists = function(file_path)
   end
 end
 
----@alias NotifyOpts {level?: number, once?: boolean}
+---@param message string|string[]
+---@param level? integer
+M.notify = function(message, level)
+  if type(message) == 'table' then
+    message = table.concat(message, '\n')
+    message = 'LazyLanguages:\n' .. message
+  else
+    message = 'LazyLanguages: ' .. message
+  end
+  level = level or vim.log.levels.INFO
+  vim.notify(message, level, { title = 'LazyLanguages' })
+end
 
----Sends a vim notify message with provided options
----@param message string | string[]
----@param opts? NotifyOpts
-M.notify = function(message, opts)
-  opts = opts or {}
-  message = type(message) == 'table' and table.concat(opts, '\n') or message
-  message = 'LazyLanguages.nvim: ' .. message
-  ---@cast message string
-  message = vim.trim(message)
-  return vim[opts.once and 'notify_once' or 'notify'](message, opts.level or vim.log.levels.INFO)
+---@param message string|string[]
+---@param level? integer
+M.notify_once = function(message, level)
+  if type(message) == 'table' then
+    message = table.concat(message, '\n')
+    message = 'LazyLanguages:\n' .. message
+  else
+    message = 'LazyLanguages: ' .. message
+  end
+  level = level or vim.log.levels.INFO
+  vim.notify_once(message, level, { title = 'LazyLanguages' })
+end
+
+--- Returns a path to a mason binary
+---@param bin_name any
+---@return unknown
+M.mason_bin_path = function(bin_name)
+  return vim.fn.stdpath 'data' .. ('/mason/bin/'):gsub('/', M.path_separator) .. bin_name
+end
+
+--- Returns a path to a mason package directory
+---@param package_name any
+---@return unknown
+M.mason_package_path = function(package_name)
+  return vim.fn.stdpath 'data' .. ('/mason/package/'):gsub('/', M.path_separator) .. package_name .. M.path_separator
 end
 
 return M

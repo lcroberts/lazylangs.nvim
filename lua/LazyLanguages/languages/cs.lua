@@ -3,7 +3,7 @@ return {
   lsp = {
     name = 'omnisharp',
     server_configuration = {
-      cmd = { vim.fn.stdpath 'data' .. ('/mason/bin/omnisharp'):gsub('/', require('LazyLanguages.utils').path_separator) },
+      cmd = { require('LazyLanguages.utils').mason_bin_path 'omnisharp' },
     },
   },
   mason_packages = {
@@ -15,7 +15,7 @@ return {
 
     dap.adapters.coreclr = {
       type = 'executable',
-      command = vim.fn.stdpath 'data' .. ('/mason/bin/netcoredbg'):gsub('/', require('LazyLanguages.utils').path_separator),
+      command = require('LazyLanguages.utils').mason_bin_path 'netcoredbg',
       args = { '--interpreter=vscode' },
     }
 

@@ -14,7 +14,7 @@ return {
       type = 'server',
       port = '${port}',
       executable = {
-        command = vim.fn.stdpath 'data' .. '/mason/bin/codelldb',
+        command = require('LazyLanguages.utils').mason_bin_path 'codelldb',
         args = { '--port', '${port}' },
         -- On windows you may have to uncomment this:
         -- detached = false,
