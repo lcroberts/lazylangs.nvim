@@ -38,6 +38,3 @@ configurations.
 | Dart | ❌ | ❌ | N/A |
 | Perl | ❌ | ❌ | N/A |
 
-## TODO
-
-- Refactor code
