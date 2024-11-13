@@ -26,14 +26,14 @@ configurations.
 ## Language TODO
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
-| PHP | ❌ | ❌ | N/A |
-| Elixir | ❌ | ❌ | N/A |
-| Ocaml | ❌ | ❌ | N/A |
 | Odin | ❌ | ❌ | N/A |
 | F# | ❌ | ❌ | N/A |
-| Haskell | ❌ | ❌ | N/A |
-| Kotlin | ❌ | ❌ | N/A |
 | Scala | ❌ | ❌ | N/A |
+| Kotlin | ❌ | ❌ | N/A |
+| Elixir | ❌ | ❌ | N/A |
+| Ocaml | ❌ | ❌ | N/A |
+| Haskell | ❌ | ❌ | N/A |
+| PHP | ❌ | ❌ | N/A |
 | Ruby | ❌ | ❌ | N/A |
 | Dart | ❌ | ❌ | N/A |
 | Perl | ❌ | ❌ | N/A |
