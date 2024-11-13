@@ -24,18 +24,19 @@ configurations.
 | Markdown | ✅ | ❌ | markdown/md |
 
 ## Language TODO
-
-- PHP
-- Elixir
-- Ocaml
-- Odin
-- F#
-- Haskell
-- Kotlin
-- Scala
-- Ruby
-- Dart
-- Perl
+| Language Name | LSP | DAP Support | Language Aliases |
+| ------------- | --- | ----------- | ---------------- |
+| PHP | ❌ | ❌ | N/A |
+| Elixir | ❌ | ❌ | N/A |
+| Ocaml | ❌ | ❌ | N/A |
+| Odin | ❌ | ❌ | N/A |
+| F# | ❌ | ❌ | N/A |
+| Haskell | ❌ | ❌ | N/A |
+| Kotlin | ❌ | ❌ | N/A |
+| Scala | ❌ | ❌ | N/A |
+| Ruby | ❌ | ❌ | N/A |
+| Dart | ❌ | ❌ | N/A |
+| Perl | ❌ | ❌ | N/A |
 
 ## TODO
 
