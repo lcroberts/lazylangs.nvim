@@ -112,15 +112,21 @@ M.language_setup = function()
   end, {})
 
   vim.api.nvim_create_user_command('LLMasonUpdate', function()
-    local packages = require('mason-registry').get_installed_packages()
-    for _, package in ipairs(packages) do
-      package:check_new_version(function(success, result_or_err)
-        if success then
-          if result_or_err.latest_version ~= result_or_err.current_version then
-            package_install(package)
+    for _, package_name in ipairs(mason_packages) do
+      local package_list = mason_registry.get_all_package_names()
+
+      if not vim.tbl_contains(package_list, package_name) then
+        utils.notify(string.format("'%s' is not a valid mason package.", package_name), { level = vim.log.levels.WARN })
+      else
+        local package = mason_registry.get_package(package_name)
+        package:check_new_version(function(success, result_or_err)
+          if success then
+            if result_or_err.latest_version ~= result_or_err.current_version then
+              package_install(package)
+            end
           end
-        end
-      end)
+        end)
+      end
     end
   end, {})
 
