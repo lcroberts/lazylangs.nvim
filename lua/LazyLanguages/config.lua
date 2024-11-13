@@ -6,10 +6,6 @@ local config = {
   ---Are mason packages for languages automatically installed
   ---@type boolean
   automatic_install = false,
-
-  ---Are mason packages for languages automatically updated
-  ---@type boolean
-  automatic_updates = false,
 }
 
 ---@param opts? ll.Config
@@ -81,7 +77,39 @@ M.setup = function(opts)
     end
     dump_file:write(file_content)
     dump_file:close()
-  end, { nargs = 1 })
+  end, {
+    nargs = 1,
+    complete = function(argLead, _, _)
+      local plugin_path = nil
+      for _, plugin in ipairs(require('lazy').plugins()) do
+        if plugin.name == 'LazyLanguages.nvim' then
+          plugin_path = plugin.dir
+        end
+      end
+
+      if plugin_path == nil then
+        utils.notify('Could not find the plugin directory for LazyLanguages.nvim', { level = vim.log.levels.ERROR })
+        return
+      end
+
+      local language_list = {}
+      local language_dir = plugin_path .. ('/lua/LazyLanguages/languages'):gsub('/', utils.path_separator)
+      for name, _ in vim.fs.dir(language_dir, opts) do
+        local wordstart, wordend = string.find(name, '%w+%.')
+        if wordstart == nil then
+          goto continue
+        end
+        local language_name = string.sub(name, wordstart, wordend - 1)
+        wordstart, wordend = string.find(language_name, argLead)
+        if wordstart ~= nil then
+          table.insert(language_list, language_name)
+        end
+
+        ::continue::
+      end
+      return language_list
+    end,
+  })
 end
 
 return setmetatable(M, {
