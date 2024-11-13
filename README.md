@@ -16,6 +16,7 @@ configurations.
 | Rust | ✅ | ✅ | rust/rs |
 | C/Cpp | ✅ | ✅ | c/cpp |
 | Zig | ✅ | ✅ | zig |
+| Odin | ✅ | ✅ | odin |
 | Python | ✅ | ✅ | python/py |
 | Bash | ✅ | ❌ | bash |
 | Lua | ✅ | ❌ | lua |
@@ -26,7 +27,6 @@ configurations.
 ## Language TODO
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
-| Odin | ❌ | ❌ | N/A |
 | F# | ❌ | ❌ | N/A |
 | Scala | ❌ | ❌ | N/A |
 | Kotlin | ❌ | ❌ | N/A |
