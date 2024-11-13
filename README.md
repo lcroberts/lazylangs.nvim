@@ -41,4 +41,3 @@ configurations.
 ## TODO
 
 - Improve utils.notify
-- Automatic updating of language servers
