@@ -12,8 +12,8 @@ return {
     server_configuration = {},
   },
   mason_packages = {
-    'codelldb',
     'clangd',
+    'codelldb',
   },
   setup = function()
     local dap = require 'dap'

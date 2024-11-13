@@ -1,19 +1,9 @@
 local utils = require 'LazyLanguages.utils'
 local conform = require 'conform'
-local mason_lspconfig = require('mason-lspconfig').get_mappings().lspconfig_to_mason
 local mason_registry = require 'mason-registry'
 local lspconfig = require 'lspconfig'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-local function get_mason_package_name(string)
-  for _, lsp in ipairs(vim.tbl_keys(mason_lspconfig)) do
-    if string == lsp then
-      return mason_lspconfig[string]
-    end
-  end
-  return string
-end
 
 local M = {}
 
@@ -95,7 +85,7 @@ M.language_setup = function()
     end
 
     for _, package in ipairs(language_table.mason_packages or {}) do
-      table.insert(mason_packages, get_mason_package_name(package))
+      table.insert(mason_packages, package)
     end
 
     if language_table.setup ~= nil then

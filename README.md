@@ -14,11 +14,12 @@
 - Dart
 - Perl
 
-### Missing Debugging
-- bash
+### Missing Debugging (All are problematic)
 - javascript
+- bash
 - lua
 
 ## TODO
 
 - Automatic updating of language servers
+- Handle incorrect mason package names better

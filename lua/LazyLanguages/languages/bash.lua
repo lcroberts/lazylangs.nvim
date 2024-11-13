@@ -5,7 +5,7 @@ return {
     server_configuration = {},
   },
   mason_packages = {
-    'bashls',
+    'bash-language-server',
     'shfmt',
   },
   formatters = { 'shfmt' },

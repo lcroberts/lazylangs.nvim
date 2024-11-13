@@ -9,8 +9,9 @@ return {
     },
   },
   mason_packages = {
-    'tsserver',
+    'typescript-language-server',
     'prettierd',
+    'js-debug-adapter',
   },
   formatters = {
     'prettierd',

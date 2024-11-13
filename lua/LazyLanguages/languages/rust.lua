@@ -8,7 +8,7 @@ return {
     },
   },
   mason_packages = {
-    'codelldb',
     'rust-analyzer',
+    'codelldb',
   },
 }

@@ -47,7 +47,7 @@ return {
     'stylua',
   },
   mason_packages = {
-    'lua_ls',
+    'lua-language-server',
     'stylua',
   },
 }
