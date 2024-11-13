@@ -17,14 +17,22 @@ M.setup = function(opts)
   opts = opts or {}
   config = vim.tbl_deep_extend('keep', opts, config)
 
-  require('LazyLanguages.lang_helpers').language_setup()
+  require('LazyLanguages.langs').language_setup()
 
-  if config.automatic_update then
-    vim.cmd 'LLMasonUpdate'
-  end
+  if config.automatic_update or vim.automatic_install then
+    vim.api.nvim_create_autocmd('UIEnter', {
+      group = vim.api.nvim_create_augroup('LazyLanguages', { clear = false }),
+      once = true,
+      callback = function()
+        if config.automatic_update then
+          vim.cmd 'LLMasonUpdate'
+        end
 
-  if config.automatic_install then
-    vim.cmd 'LLMasonInstall'
+        if config.automatic_install then
+          vim.cmd 'LLMasonInstall'
+        end
+      end,
+    })
   end
 
   vim.api.nvim_create_user_command('LLDumpConfig', function(options)

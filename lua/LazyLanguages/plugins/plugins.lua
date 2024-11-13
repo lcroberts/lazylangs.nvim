@@ -1,4 +1,4 @@
-local lang_helpers = require 'LazyLanguages.lang_helpers'
+local lang_helpers = require 'LazyLanguages.langs'
 
 local M = {}
 

@@ -99,7 +99,7 @@ M.language_setup = function()
     for _, package_name in ipairs(mason_packages) do
       local package_list = mason_registry.get_all_package_names()
       if not vim.tbl_contains(package_list, package_name) then
-        utils.notify(string.format("'%s' is not a valid mason package.", package_name), { level = vim.log.levels.WARN })
+        utils.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
         if not package:is_installed() then
@@ -117,7 +117,6 @@ M.language_setup = function()
         utils.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
-        -- TODO: Print error
         package:check_new_version(function(success, result_or_err)
           if success then
             if result_or_err.latest_version ~= result_or_err.current_version then
