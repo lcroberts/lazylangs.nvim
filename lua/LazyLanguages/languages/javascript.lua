@@ -11,7 +11,6 @@ return {
   mason_packages = {
     'typescript-language-server',
     'prettierd',
-    'js-debug-adapter',
   },
   formatters = {
     'prettierd',
