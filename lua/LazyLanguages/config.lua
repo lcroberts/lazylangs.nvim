@@ -6,6 +6,10 @@ local config = {
   ---Are mason packages for languages automatically installed
   ---@type boolean
   automatic_install = false,
+
+  ---Are mason packages for languages automatically updated
+  ---@type boolean
+  automatic_update = false,
 }
 
 ---@param opts? ll.Config
@@ -14,6 +18,10 @@ M.setup = function(opts)
   config = vim.tbl_deep_extend('keep', opts, config)
 
   require('LazyLanguages.lang_helpers').language_setup()
+
+  if config.automatic_update then
+    vim.cmd 'LLMasonUpdate'
+  end
 
   if config.automatic_install then
     vim.cmd 'LLMasonInstall'

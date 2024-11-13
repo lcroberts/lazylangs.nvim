@@ -111,6 +111,19 @@ M.language_setup = function()
     end
   end, {})
 
+  vim.api.nvim_create_user_command('LLMasonUpdate', function()
+    local packages = require('mason-registry').get_installed_packages()
+    for _, package in ipairs(packages) do
+      package:check_new_version(function(success, result_or_err)
+        if success then
+          if result_or_err.latest_version ~= result_or_err.current_version then
+            package_install(package)
+          end
+        end
+      end)
+    end
+  end, {})
+
   vim.api.nvim_create_user_command('LLMasonClean', function()
     vim.cmd('MasonUninstall ' .. table.concat(mason_packages, ' '))
   end, {})
