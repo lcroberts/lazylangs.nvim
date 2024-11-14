@@ -31,6 +31,7 @@ configurations.
 | Scala | ❌ | ❌ | N/A |
 | Kotlin | ❌ | ❌ | N/A |
 | Elixir | ❌ | ❌ | N/A |
+| Erlang | ❌ | ❌ | N/A |
 | Ocaml | ❌ | ❌ | N/A |
 | Haskell | ❌ | ❌ | N/A |
 | PHP | ❌ | ❌ | N/A |
