@@ -38,3 +38,6 @@ configurations.
 | Dart | ❌ | ❌ | N/A |
 | Perl | ❌ | ❌ | N/A |
 
+## TODO
+
+- Fix debugger config collision possibility (if the config for the same debugger is used multiple times)
