@@ -1,6 +1,14 @@
 local M = {}
 
-if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
+M.on_windows = function()
+  if vim.fn.has 'win32' == 1 or vim.fn.has 'win64' == 1 then
+    return true
+  else
+    return false
+  end
+end
+
+if M.on_windows() then
   M.path_separator = '\\'
 else
   M.path_separator = '/'
