@@ -9,7 +9,11 @@ return {
   },
   lsp = {
     name = 'clangd',
-    server_configuration = {},
+    server_configuration = {
+      capabilities = {
+        offsetEncoding = 'utf-8',
+      },
+    },
   },
   mason_packages = {
     'clangd',
