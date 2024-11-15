@@ -15,7 +15,7 @@ return {
       type = 'server',
       port = '${port}',
       executable = {
-        command = require('LazyLanguages.utils').mason_bin_path 'codelldb',
+        command = require('LazyLanguages.helpers.paths').mason_bin_path 'codelldb',
         args = { '--port', '${port}' },
         -- On windows you may have to uncomment this:
         -- detached = false,

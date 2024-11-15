@@ -3,7 +3,7 @@ return {
   lsp = {
     name = 'omnisharp',
     server_configuration = {
-      cmd = { require('LazyLanguages.utils').mason_bin_path 'omnisharp' },
+      cmd = { require('LazyLanguages.helpers.paths').mason_bin_path 'omnisharp' },
     },
   },
   mason_packages = {
@@ -15,7 +15,7 @@ return {
 
     dap.adapters.coreclr = {
       type = 'executable',
-      command = require('LazyLanguages.utils').mason_bin_path 'netcoredbg',
+      command = require('LazyLanguages.helpers.paths').mason_bin_path 'netcoredbg',
       args = { '--interpreter=vscode' },
     }
 

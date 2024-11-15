@@ -17,12 +17,9 @@ if vim.g.lazylangs.langs ~= nil then
     ::continue::
   end
 else
-  require('LazyLanguages.utils').notify(
+  require('LazyLanguages.helpers.vim').notify_once(
     'vim.g.lazylangs.langs is not set so no languages will be loaded. If you this is intentional try setting it to an empty table.',
-    {
-      level = vim.log.levels.WARN,
-      once = true,
-    }
+    vim.log.levels.WARN
   )
 end
 

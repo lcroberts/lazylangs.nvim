@@ -1,4 +1,4 @@
-local utils = require 'LazyLanguages.utils'
+local path_helpers = require 'LazyLanguages.helpers.paths'
 local conform = require 'conform'
 local mason_registry = require 'mason-registry'
 local lspconfig = require 'lspconfig'
@@ -10,10 +10,10 @@ local M = {}
 local expanded_override_path = nil
 if type(vim.g.lazylangs.override_path) == 'string' then
   expanded_override_path = vim.fn.stdpath 'config'
-    .. utils.path_separator
+    .. path_helpers.path_separator
     .. 'lua'
-    .. utils.path_separator
-    .. vim.g.lazylangs.override_path:gsub('%.', utils.path_separator)
+    .. path_helpers.path_separator
+    .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
 end
 
 ---Find and return a language table from the correct file
@@ -24,8 +24,8 @@ M.get_language_table = function(language)
 
   if expanded_override_path ~= nil then
     error_msg = ' is not a supported language and has no override file provided'
-    local override_file = expanded_override_path .. utils.path_separator .. language .. '.lua'
-    if utils.file_exists(override_file) then
+    local override_file = expanded_override_path .. path_helpers.path_separator .. language .. '.lua'
+    if path_helpers.file_exists(override_file) then
       return dofile(override_file)
     end
   end
@@ -35,7 +35,7 @@ M.get_language_table = function(language)
   if success then
     return tbl
   else
-    utils.notify_once(string.format("'%s' %s", language, error_msg), vim.log.levels.WARN)
+    path_helpers.notify_once(string.format("'%s' %s", language, error_msg), vim.log.levels.WARN)
     return nil
   end
 end
@@ -52,7 +52,7 @@ local function package_install(package)
   end)
   package:once('install:failed', function()
     vim.schedule_wrap(function()
-      utils.notify(string.format("Mason package '%s' has failed to install", package.name), vim.log.levels.ERROR)
+      path_helpers.notify(string.format("Mason package '%s' has failed to install", package.name), vim.log.levels.ERROR)
     end)
   end)
   package:install { force = true }
@@ -99,7 +99,7 @@ M.language_setup = function()
     for _, package_name in ipairs(mason_packages) do
       local package_list = mason_registry.get_all_package_names()
       if not vim.tbl_contains(package_list, package_name) then
-        utils.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
+        path_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
         if not package:is_installed() then
@@ -114,7 +114,7 @@ M.language_setup = function()
       local package_list = mason_registry.get_all_package_names()
 
       if not vim.tbl_contains(package_list, package_name) then
-        utils.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
+        path_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
         package:check_new_version(function(success, result_or_err)

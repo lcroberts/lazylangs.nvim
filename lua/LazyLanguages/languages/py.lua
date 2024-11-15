@@ -1,11 +1,11 @@
-local utils = require 'LazyLanguages.utils'
+local path_helpers = require 'LazyLanguages.helpers.paths'
 ---@type ll.Language
 return {
   plugins = {
     {
       'mfussenegger/nvim-dap-python',
       config = function()
-        require('dap-python').setup(require('LazyLanguages.utils').mason_package_path 'debugpy' .. ('/venv/bin/python'):gsub('/', utils.path_separator))
+        require('dap-python').setup(path_helpers.mason_package_path 'debugpy' .. ('/venv/bin/python'):gsub('/', path_helpers.path_separator))
       end,
     },
   },
