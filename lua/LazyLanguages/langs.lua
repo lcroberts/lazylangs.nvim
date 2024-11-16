@@ -1,9 +1,8 @@
 local path_helpers = require 'LazyLanguages.helpers.paths'
+local config = require 'LazyLanguages.config'
 local conform = require 'conform'
 local mason_registry = require 'mason-registry'
 local lspconfig = require 'lspconfig'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 local M = {}
 
@@ -77,7 +76,8 @@ M.language_setup = function()
     -- Take lsp configuration and merge it with the capabilities generated in the file.
     if language_table.lsp ~= nil then
       local lsp_config = vim.tbl_deep_extend('force', {}, {
-        capabilities = capabilities,
+        capabilities = config.lsp.capabilities,
+        on_attach = config.lsp.on_attach,
       }, language_table.lsp.server_configuration or {})
       lspconfig[language_table.lsp.name].setup(lsp_config)
     end

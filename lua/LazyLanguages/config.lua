@@ -1,5 +1,10 @@
 local path_helpers = require 'LazyLanguages.helpers.paths'
 local M = {}
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+local success, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
+if success then
+  capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
+end
 
 --- @class ll.Config
 local config = {
@@ -10,6 +15,21 @@ local config = {
   ---Are mason packages for languages automatically updated
   ---@type boolean
   automatic_update = false,
+
+  lsp = {
+    ---The lsp on attach function to be forwarded to lspconfig
+    ---@param client vim.lsp.Client
+    ---@param bufnr number
+    on_attach = function(client, bufnr)
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      end
+    end,
+
+    ---Default LSP client capabilities. May be extended/modified via individual language configs
+    ---@type lsp.ClientCapabilities
+    capabilities = capabilities,
+  },
 }
 
 ---@param opts? ll.Config
@@ -41,7 +61,7 @@ M.setup = function(opts)
       return
     end
     local language = string.lower(options.args)
-    local success, _ = pcall(require, 'LazyLanguages.languages.' .. language)
+    success, _ = pcall(require, 'LazyLanguages.languages.' .. language)
     if not success then
       path_helpers.notify(string.format("'%s' is not a language supported by LazyLanguages", language), vim.log.levels.WARN)
       return
