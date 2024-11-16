@@ -93,8 +93,6 @@ M.language_setup = function()
     ::continue::
   end
 
-  vim.cmd 'filetype detect' -- Fixes single file not working on some language servers
-
   vim.api.nvim_create_user_command('LLMasonInstall', function()
     for _, package_name in ipairs(mason_packages) do
       local package_list = mason_registry.get_all_package_names()
