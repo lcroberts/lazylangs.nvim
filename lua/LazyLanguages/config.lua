@@ -41,7 +41,7 @@ M.setup = function(opts)
 
   if config.automatic_update or vim.automatic_install then
     vim.api.nvim_create_autocmd('UIEnter', {
-      group = vim.api.nvim_create_augroup('LazyLanguages', { clear = false }),
+      group = vim.api.nvim_create_augroup('LLMasonInstall', { clear = true }),
       once = true,
       callback = function()
         if config.automatic_update then

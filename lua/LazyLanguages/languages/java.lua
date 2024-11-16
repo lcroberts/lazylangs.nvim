@@ -21,7 +21,7 @@ return {
           },
         }
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-          group = vim.api.nvim_create_augroup('LazyLanguages', { clear = false }),
+          group = vim.api.nvim_create_augroup('LLJdtls', { clear = true }),
           pattern = '*.java',
           callback = function()
             require('jdtls').start_or_attach(opts)

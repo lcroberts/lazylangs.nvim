@@ -13,7 +13,7 @@ return {
       config = function(_, opts)
         require('render-markdown').setup(opts)
         vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-          group = vim.api.nvim_create_augroup('LazyLanguages', { clear = false }),
+          group = vim.api.nvim_create_augroup('LLRenderMarkdown', { clear = true }),
           pattern = { 'markdown' },
           command = 'RenderMarkdown',
         })
