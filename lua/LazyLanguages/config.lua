@@ -41,21 +41,19 @@ M.setup = function(opts)
 
   require('LazyLanguages.langs').language_setup()
 
-  if config.automatic_update or vim.automatic_install then
-    vim.api.nvim_create_autocmd('UIEnter', {
-      group = vim.api.nvim_create_augroup('LLMasonInstall', { clear = true }),
-      once = true,
-      callback = function()
-        if config.mason.automatic_update then
-          vim.cmd 'LLMasonUpdate'
-        end
+  vim.api.nvim_create_autocmd('UIEnter', {
+    group = vim.api.nvim_create_augroup('LLMasonInstall', { clear = true }),
+    once = true,
+    callback = function()
+      if config.mason.automatic_update then
+        vim.cmd 'LLMasonUpdate'
+      end
 
-        if config.mason.automatic_install then
-          vim.cmd 'LLMasonInstall'
-        end
-      end,
-    })
-  end
+      if config.mason.automatic_install then
+        vim.cmd 'LLMasonInstall'
+      end
+    end,
+  })
 
   vim.api.nvim_create_user_command('LLDumpConfig', function(options)
     if type(vim.g.lazylangs.override_path) ~= 'string' then

@@ -10,11 +10,11 @@ return {
     },
   },
   lsp = {
-    name = 'pyright',
+    name = 'basedpyright',
     server_configuration = {},
   },
   mason_packages = {
-    'pyright',
+    'basedpyright',
     'isort',
     'black',
     'debugpy',

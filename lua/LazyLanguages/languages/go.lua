@@ -26,7 +26,21 @@ return {
   },
   lsp = {
     name = 'gopls',
-    server_configuration = {},
+    server_configuration = {
+      settings = {
+        gopls = {
+          hints = {
+            rangeVariableTypes = true,
+            parameterNames = true,
+            constantValues = true,
+            assignVariableTypes = true,
+            compositeLiteralFields = true,
+            compositeLiteralTypes = true,
+            functionTypeParameters = true,
+          },
+        },
+      },
+    },
   },
   mason_packages = {
     'gopls',

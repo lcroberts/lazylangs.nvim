@@ -6,6 +6,16 @@ return {
       config = function()
         local opts = {
           cmd = { vim.fn.stdpath 'data' .. ('/mason/bin/jdtls'):gsub('/', require('LazyLanguages.helpers.paths').path_separator) },
+          settings = {
+            java = {
+              inlayHints = {
+                parameterNames = {
+                  enabled = 'all',
+                  exclusions = { 'this' },
+                },
+              },
+            },
+          },
           root_dir = vim.fs.dirname(vim.fs.find({ 'gradlew', '.git', 'mvnw' }, { upward = true })[1]),
           init_options = {
             bundles = {
