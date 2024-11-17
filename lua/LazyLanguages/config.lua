@@ -8,13 +8,15 @@ end
 
 --- @class ll.Config
 local config = {
-  ---Are mason packages for languages automatically installed
-  ---@type boolean
-  automatic_install = false,
+  mason = {
+    ---Are mason packages for languages automatically installed
+    ---@type boolean
+    automatic_install = false,
 
-  ---Are mason packages for languages automatically updated
-  ---@type boolean
-  automatic_update = false,
+    ---Are mason packages for languages automatically updated
+    ---@type boolean
+    automatic_update = false,
+  },
 
   lsp = {
     ---The lsp on attach function to be forwarded to lspconfig
@@ -44,11 +46,11 @@ M.setup = function(opts)
       group = vim.api.nvim_create_augroup('LLMasonInstall', { clear = true }),
       once = true,
       callback = function()
-        if config.automatic_update then
+        if config.mason.automatic_update then
           vim.cmd 'LLMasonUpdate'
         end
 
-        if config.automatic_install then
+        if config.mason.automatic_install then
           vim.cmd 'LLMasonInstall'
         end
       end,
