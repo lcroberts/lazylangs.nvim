@@ -9,8 +9,10 @@ configurations that I conflate to be the same in the provided language
 configurations. You can also add custom languages or different configurations
 for the same language if you wish.
 
+## Compiled Languages
+
 | Language Name | LSP | DAP Support | Language Aliases|
-| ------------- | -------------- | -------------- | --------------|
+| ------------- | :--------------: | :--------------: | --------------|
 | Go | ✅ | ✅ | go |
 | Java | ✅ | ✅ | java |
 | C# | ✅ | ✅ | cs/c#/csharp |
@@ -18,12 +20,22 @@ for the same language if you wish.
 | C/Cpp | ✅ | ✅ | c/cpp |
 | Zig | ✅ | ✅ | zig |
 | Odin | ✅ | ✅ | odin |
+
+## Interpreted Languages
+
+| Language Name | LSP | DAP Support | Language Aliases|
+| ------------- | :--------------: | :--------------: | --------------|
 | Python | ✅ | ✅ | py/python |
 | Bash | ✅ | ❌ | sh/bash |
 | Lua | ✅ | ❌ | lua |
 | Javascript/Typescript | ✅ | ❌ | js/tsjavascript/typescript |
-| Latex | ✅ | ❌ | tex/latex |
-| Markdown | ✅ | ❌ | md/markdown |
+
+## Markup Languages
+
+| Language Name | LSP |Language Aliases|
+| ------------- | :--------------: | --------------|
+| Latex | ✅ | tex/latex |
+| Markdown | ✅ | md/markdown |
 
 ## Language TODO
 | Language Name | LSP | DAP Support | Language Aliases |
