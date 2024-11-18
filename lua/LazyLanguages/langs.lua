@@ -75,11 +75,23 @@ M.language_setup = function()
 
     -- Take lsp configuration and merge it with the capabilities generated in the file.
     if language_table.lsp ~= nil then
-      local lsp_config = vim.tbl_deep_extend('force', {}, {
-        capabilities = config.lsp.capabilities,
-        on_attach = config.lsp.on_attach,
-      }, language_table.lsp.server_configuration or {})
-      lspconfig[language_table.lsp.name].setup(lsp_config)
+      if language_table.lsp.name == nil then
+        for _, lsp in ipairs(language_table.lsp) do
+          local lsp_config = vim.tbl_deep_extend('force', {}, {
+            capabilities = config.lsp.capabilities,
+            on_attach = config.lsp.on_attach,
+            flags = config.lsp.flags,
+          }, lsp.server_configuration or {})
+          lspconfig[lsp.name].setup(lsp_config)
+        end
+      else
+        local lsp_config = vim.tbl_deep_extend('force', {}, {
+          capabilities = config.lsp.capabilities,
+          on_attach = config.lsp.on_attach,
+          flags = config.lsp.flags,
+        }, language_table.lsp.server_configuration or {})
+        lspconfig[language_table.lsp.name].setup(lsp_config)
+      end
     end
 
     for _, package in ipairs(language_table.mason_packages or {}) do

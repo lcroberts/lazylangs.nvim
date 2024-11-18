@@ -36,6 +36,7 @@ for the same language if you wish.
 | ------------- | :--------------: | --------------|
 | Latex | ✅ | tex/latex |
 | Markdown | ✅ | md/markdown |
+| HTML/CSS |  ✅  | html/css |
 
 ## Language TODO
 | Language Name | LSP | DAP Support | Language Aliases |

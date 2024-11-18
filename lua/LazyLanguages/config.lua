@@ -31,6 +31,13 @@ local config = {
     ---Default LSP client capabilities. May be extended/modified via individual language configs
     ---@type lsp.ClientCapabilities
     capabilities = capabilities,
+
+    ---Flags for controlling the behavior of lsps
+    ---@type table
+    flags = {
+      allow_incremental_sync = true,
+      debounce_text_changes = 150,
+    },
   },
 }
 
