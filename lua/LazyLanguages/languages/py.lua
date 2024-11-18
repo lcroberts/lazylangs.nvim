@@ -11,7 +11,14 @@ return {
   },
   lsp = {
     name = 'basedpyright',
-    server_configuration = {},
+    server_configuration = {
+      settings = {
+        basedpyright = {
+          -- Without this there are a lot of unnecessary warnings, some may want this to not be here though.
+          typeCheckingMode = 'standard',
+        },
+      },
+    },
   },
   mason_packages = {
     'basedpyright',
