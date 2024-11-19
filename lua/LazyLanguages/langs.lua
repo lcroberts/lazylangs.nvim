@@ -19,6 +19,7 @@ end
 ---@param language string
 ---@return ll.Language?
 M.get_language_table = function(language)
+  -- TODO: See if I can make this more optimized. This is the hot path of the plugin
   local error_msg = ' is not a supported language and no override path has been specified'
 
   if expanded_override_path ~= nil then
