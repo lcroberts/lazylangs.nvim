@@ -5,7 +5,7 @@ local M = {}
 -- Extract plugin tables for every language and insert it into returned table
 if vim.g.lazylangs.langs ~= nil then
   for _, language in ipairs(vim.g.lazylangs.langs) do
-    local language_table = lang_helpers.get_language_table(language)
+    local language_table = lang_helpers.language_tables[language]
     if language_table == nil then
       goto continue
     end

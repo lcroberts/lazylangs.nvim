@@ -15,28 +15,24 @@ if type(vim.g.lazylangs.override_path) == 'string' then
     .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
 end
 
----Find and return a language table from the correct file
----@param language string
----@return ll.Language?
-M.get_language_table = function(language)
-  -- TODO: See if I can make this more optimized. This is the hot path of the plugin
+M.language_tables = {}
+for _, language in ipairs(vim.g.lazylangs.langs or {}) do
   local error_msg = ' is not a supported language and no override path has been specified'
 
   if expanded_override_path ~= nil then
     error_msg = ' is not a supported language and has no override file provided'
     local override_file = expanded_override_path .. path_helpers.path_separator .. language .. '.lua'
     if path_helpers.file_exists(override_file) then
-      return dofile(override_file)
+      M.language_tables[language] = dofile(override_file)
+    else
+      local success, tbl = pcall(require, 'LazyLanguages.languages.' .. language)
+      ---@cast tbl ll.Language
+      if success then
+        M.language_tables[language] = tbl
+      else
+        path_helpers.notify_once(string.format("'%s' %s", language, error_msg), vim.log.levels.WARN)
+      end
     end
-  end
-
-  local success, tbl = pcall(require, 'LazyLanguages.languages.' .. language)
-  ---@cast tbl ll.Language
-  if success then
-    return tbl
-  else
-    path_helpers.notify_once(string.format("'%s' %s", language, error_msg), vim.log.levels.WARN)
-    return nil
   end
 end
 
@@ -61,13 +57,7 @@ end
 M.language_setup = function()
   local mason_packages = {}
 
-  for _, language in ipairs(vim.g.lazylangs.langs or {}) do
-    local language_table = M.get_language_table(language)
-    if language_table == nil then
-      -- Error notification returned by get_language_table as it provides a more accurate error msg
-      goto continue
-    end
-
+  for language, language_table in ipairs(M.language_tables) do
     -- Merge conform formatters_by_ft with the formatter settings in language file
     local language_formatters = conform.formatters_by_ft[language] or {}
     ---@diagnostic disable-next-line: param-type-mismatch
@@ -102,8 +92,6 @@ M.language_setup = function()
     if language_table.setup ~= nil then
       language_table.setup()
     end
-
-    ::continue::
   end
 
   vim.api.nvim_create_user_command('LLMasonInstall', function()
