@@ -57,7 +57,8 @@ end
 M.language_setup = function()
   local mason_packages = {}
 
-  for language, language_table in ipairs(M.language_tables) do
+  for _, language in ipairs(vim.g.lazylangs.langs or {}) do
+    local language_table = M.language_tables[language]
     -- Merge conform formatters_by_ft with the formatter settings in language file
     local language_formatters = conform.formatters_by_ft[language] or {}
     ---@diagnostic disable-next-line: param-type-mismatch
