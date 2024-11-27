@@ -12,16 +12,16 @@ TODO
 
 - [C Sharp](#C-Sharp)
 - [Rust](#Rust)
-- [C/Cpp](#C-Cpp)
+- [C/Cpp](#CCpp)
 - [Zig](#Zig)
 - [Odin](#Odin)
 - [Python](#Python)
 - [Bash](#Bash)
 - [Lua](#Lua)
-- [Javascript/Typescript](#Javascript-Typescript)
+- [Javascript/Typescript](#JavascriptTypescript)
 - [Latex](#Latex)
 - [Markdown](#Markdown)
-- [HTML/CSS](#HTML-CSS)
+- [HTML/CSS](#HTMLCSS)
 
 ## [Go](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/go.lua)
 
