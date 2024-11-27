@@ -13,9 +13,8 @@ return {
           -- LSP configuration
           server = {
             on_attach = require('LazyLanguages.config').lsp.on_attach, -- Config should be loaded by the time this is ran
+            capabilities = require('LazyLanguages.config').lsp.capabilities,
           },
-          -- DAP configuration
-          dap = {}, -- TODO: Fix debug info not being encoded without manual compilation
         }
       end,
     },
