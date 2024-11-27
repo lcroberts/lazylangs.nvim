@@ -10,18 +10,18 @@ to the configuration file by clicking on the language name.
 
 TODO
 
-- [C Sharp](<#C Sharp>)
+- [C Sharp](#C-Sharp)
 - [Rust](#Rust)
-- [C/Cpp](#C/Cpp)
+- [C/Cpp](#C-Cpp)
 - [Zig](#Zig)
 - [Odin](#Odin)
 - [Python](#Python)
 - [Bash](#Bash)
 - [Lua](#Lua)
-- [Javaecript/Typescript](#Javascript/Typescript)
+- [Javascript/Typescript](#Javascript-Typescript)
 - [Latex](#Latex)
 - [Markdown](#Markdown)
-- [HTML/CSS](#HTML/CSS)
+- [HTML/CSS](#HTML-CSS)
 
 ## [Go](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/go.lua)
 
