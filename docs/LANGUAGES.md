@@ -5,8 +5,23 @@ to the configuration file by clicking on the language name.
 
 ## Table of Contents:
 
-- [Go](#Go)
-- [Java](#Java)
+- [Go](#[Go])
+- [Java](#[Java])
+
+TODO
+
+- [C Sharp](<#[C Sharp]>)
+- [Rust](#[Rust])
+- [C/Cpp](#[C/Cpp])
+- [Zig](#[Zig])
+- [Odin](#[Odin])
+- [Python](#[Python])
+- [Bash](#[Bash])
+- [Lua](#[Lua])
+- [Javascript/Typescript](#[Javascript/Typescript])
+- [Latex](#[Latex])
+- [Markdown](#[Markdown])
+- [HTML/CSS](#[HTML/CSS])
 
 ## [Go](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/go.lua)
 
@@ -22,3 +37,27 @@ to the configuration file by clicking on the language name.
 - Formatter: LSP Builtin (jdtls)
 - Additional Plugins:
     - mfussenegger/nvim-jdtls
+
+## [C Sharp]()
+
+## [Rust]()
+
+## [C/Cpp]()
+
+## [Zig]()
+
+## [Odin]()
+
+## [Python]()
+
+## [Bash]()
+
+## [Lua]()
+
+## [Javascript/Typescript]()
+
+## [Latex]()
+
+## [Markdown]()
+
+## [HTML/CSS]()
