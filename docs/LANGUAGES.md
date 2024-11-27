@@ -7,9 +7,6 @@ to the configuration file by clicking on the language name.
 
 - [Go](#[Go])
 - [Java](#[Java])
-
-TODO
-
 - [C Sharp](#C-Sharp)
 - [Rust](#Rust)
 - [C/Cpp](#CCpp)
