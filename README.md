@@ -15,8 +15,8 @@ for the same language if you wish.
 | ------------- | :--------------: | :--------------: | --------------|
 | Go | ✅ | ✅ | go |
 | Java | ✅ | ✅ | java |
-| C# | ✅ | ✅ | cs/c#/csharp |
-| Rust | ✅ | ✅ | rs/rust |
+| C# | ✅ | ✅ | csharp/cs |
+| Rust | ✅ | ✅ | rust/rs |
 | C/Cpp | ✅ | ✅ | c/cpp |
 | Zig | ✅ | ✅ | zig |
 | Odin | ✅ | ✅ | odin |
@@ -25,17 +25,17 @@ for the same language if you wish.
 
 | Language Name | LSP | DAP Support | Language Aliases|
 | ------------- | :--------------: | :--------------: | --------------|
-| Python | ✅ | ✅ | py/python |
-| Bash | ✅ | ❌ | sh/bash |
+| Python | ✅ | ✅ | python/py |
+| Bash | ✅ | ❌ | bash/sh |
 | Lua | ✅ | ❌ | lua |
-| Javascript/Typescript | ✅ | ❌ | js/tsjavascript/typescript |
+| Javascript/Typescript | ✅ | ❌ | javascript/typescript/js/ts |
 
 ## Markup Languages
 
 | Language Name | LSP |Language Aliases|
 | ------------- | :--------------: | --------------|
-| Latex | ✅ | tex/latex |
-| Markdown | ✅ | md/markdown |
+| Latex | ✅ | latex/tex |
+| Markdown | ✅ | markdown/md |
 | HTML/CSS |  ✅  | html/css |
 
 ## Language TODO

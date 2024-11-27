@@ -1,1 +1,1 @@
-js.lua
+javascript.lua
