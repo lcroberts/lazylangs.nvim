@@ -1,3 +1,4 @@
+---@module "LazyLanguages"
 ---@type ll.Language
 return {
   lsp = {

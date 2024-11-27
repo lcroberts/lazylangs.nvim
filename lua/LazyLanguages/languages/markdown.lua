@@ -1,3 +1,4 @@
+---@module "LazyLanguages"
 ---@type ll.Language
 return {
   plugins = {
@@ -10,14 +11,6 @@ return {
         enabled = false,
         preset = 'obsidian',
       },
-      config = function(_, opts)
-        require('render-markdown').setup(opts)
-        vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
-          group = vim.api.nvim_create_augroup('LLRenderMarkdown', { clear = true }),
-          pattern = { 'markdown' },
-          command = 'RenderMarkdown',
-        })
-      end,
     },
   },
   lsp = {
@@ -27,4 +20,11 @@ return {
   mason_packages = {
     'marksman',
   },
+  setup = function()
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
+      group = vim.api.nvim_create_augroup('LLRenderMarkdown', { clear = true }),
+      pattern = { 'markdown' },
+      command = 'RenderMarkdown',
+    })
+  end,
 }

@@ -1,4 +1,5 @@
 local path_helpers = require 'LazyLanguages.helpers.paths'
+---@module "LazyLanguages"
 ---@type ll.Language
 return {
   plugins = {
