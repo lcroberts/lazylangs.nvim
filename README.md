@@ -9,6 +9,8 @@ configurations that I conflate to be the same in the provided language
 configurations. You can also add custom languages or different configurations
 for the same language if you wish.
 
+For more information on any of the available languages see [LANGUAGES.md](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/docs/LANGUAGES.md).
+
 ## Compiled Languages
 
 | Language Name | LSP | DAP Support | Language Aliases|
@@ -53,6 +55,3 @@ for the same language if you wish.
 | Dart | ❌ | ❌ | N/A |
 | Perl | ❌ | ❌ | N/A |
 
-## TODO
-
-- Fix debugger config collision possibility (if the config for the same debugger is used multiple times)
