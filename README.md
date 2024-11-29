@@ -54,4 +54,5 @@ For more information on any of the available languages see [LANGUAGES.md](https:
 | Ruby | ❌ | ❌ | N/A |
 | Dart | ❌ | ❌ | N/A |
 | Perl | ❌ | ❌ | N/A |
+| Julia | ❌ | ❌ | N/A |
 
