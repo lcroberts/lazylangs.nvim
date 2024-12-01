@@ -1,4 +1,5 @@
 local path_helpers = require 'LazyLanguages.helpers.paths'
+local vim_helpers = require 'LazyLanguages.helpers.vim'
 local config = require 'LazyLanguages.config'
 local conform = require 'conform'
 local mason_registry = require 'mason-registry'
@@ -30,7 +31,7 @@ for _, language in ipairs(vim.g.lazylangs.langs or {}) do
       if success then
         M.language_tables[language] = tbl
       else
-        path_helpers.notify_once(string.format("'%s' %s", language, error_msg), vim.log.levels.WARN)
+        vim_helpers.notify_once(string.format("'%s' %s", language, error_msg), vim.log.levels.WARN)
       end
     end
   end
@@ -48,7 +49,7 @@ local function package_install(package)
   end)
   package:once('install:failed', function()
     vim.schedule_wrap(function()
-      path_helpers.notify(string.format("Mason package '%s' has failed to install", package.name), vim.log.levels.ERROR)
+      vim_helpers.notify(string.format("Mason package '%s' has failed to install", package.name), vim.log.levels.ERROR)
     end)
   end)
   package:install { force = true }
@@ -99,7 +100,7 @@ M.language_setup = function()
     for _, package_name in ipairs(mason_packages) do
       local package_list = mason_registry.get_all_package_names()
       if not vim.tbl_contains(package_list, package_name) then
-        path_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
+        vim_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
         if not package:is_installed() then
@@ -114,7 +115,7 @@ M.language_setup = function()
       local package_list = mason_registry.get_all_package_names()
 
       if not vim.tbl_contains(package_list, package_name) then
-        path_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
+        vim_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
         package:check_new_version(function(success, result_or_err)

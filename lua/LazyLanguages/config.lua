@@ -1,4 +1,5 @@
 local path_helpers = require 'LazyLanguages.helpers.paths'
+local vim_helpers = require 'LazyLanguages.helpers.vim'
 local M = {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local success, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
@@ -64,13 +65,13 @@ M.setup = function(opts)
 
   vim.api.nvim_create_user_command('LLDumpConfig', function(options)
     if type(vim.g.lazylangs.override_path) ~= 'string' then
-      path_helpers.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config", vim.log.levels.ERROR)
+      vim_helpers.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config", vim.log.levels.ERROR)
       return
     end
     local language = string.lower(options.args)
     success, _ = pcall(require, 'LazyLanguages.languages.' .. language)
     if not success then
-      path_helpers.notify(string.format("'%s' is not a language supported by LazyLanguages", language), vim.log.levels.WARN)
+      vim_helpers.notify(string.format("'%s' is not a language supported by LazyLanguages", language), vim.log.levels.WARN)
       return
     end
     local plugin_path = nil
@@ -81,14 +82,14 @@ M.setup = function(opts)
     end
 
     if plugin_path == nil then
-      path_helpers.notify('Could not find the plugin directory for LazyLanguages.nvim', vim.log.levels.ERROR)
+      vim_helpers.notify('Could not find the plugin directory for LazyLanguages.nvim', vim.log.levels.ERROR)
       return
     end
 
     local file_path = plugin_path .. ('/lua/LazyLanguages/languages/'):gsub('/', path_helpers.path_separator) .. language .. '.lua'
     local file_handle = io.open(file_path, 'r')
     if file_handle == nil then
-      path_helpers.notify(string.format("There was an error opening the file for '%s'", language), vim.log.levels.ERROR)
+      vim_helpers.notify(string.format("There was an error opening the file for '%s'", language), vim.log.levels.ERROR)
       return
     end
     local file_content = file_handle:read '*a'
@@ -102,20 +103,20 @@ M.setup = function(opts)
 
     if not vim.uv.fs_stat(override_path) then
       if not vim.fn.mkdir(override_path, 'p') then
-        path_helpers.notify(string.format("There was an error creating directory '%s'", override_path), vim.log.levels.ERROR)
+        vim_helpers.notify(string.format("There was an error creating directory '%s'", override_path), vim.log.levels.ERROR)
         return
       end
     end
     local dump_file_path = override_path .. path_helpers.path_separator .. language .. '.lua'
     if vim.uv.fs_stat(dump_file_path) then
       if vim.fn.confirm(dump_file_path .. ' already exists, do you want to override it?', '&Yes\n&No', 2, 'Question') ~= 1 then
-        path_helpers.notify 'Aborting config dump'
+        vim_helpers.notify 'Aborting config dump'
         return
       end
     end
     local dump_file = io.open(dump_file_path, 'w')
     if dump_file == nil then
-      path_helpers.notify(string.format("There was an error opening '%s' to write out the config", dump_file_path), vim.log.levels.ERROR)
+      vim_helpers.notify(string.format("There was an error opening '%s' to write out the config", dump_file_path), vim.log.levels.ERROR)
       return
     end
     dump_file:write(file_content)
@@ -131,7 +132,7 @@ M.setup = function(opts)
       end
 
       if plugin_path == nil then
-        path_helpers.notify('Could not find the plugin directory for LazyLanguages.nvim', vim.log.levels.ERROR)
+        vim_helpers.notify('Could not find the plugin directory for LazyLanguages.nvim', vim.log.levels.ERROR)
         return
       end
 
