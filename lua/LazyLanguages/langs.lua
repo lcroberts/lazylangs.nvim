@@ -97,6 +97,7 @@ M.language_setup = function()
   end
 
   vim.api.nvim_create_user_command('LLMasonInstall', function()
+    mason_registry.refresh()
     for _, package_name in ipairs(mason_packages) do
       local package_list = mason_registry.get_all_package_names()
       if not vim.tbl_contains(package_list, package_name) then
@@ -112,6 +113,7 @@ M.language_setup = function()
 
   vim.api.nvim_create_user_command('LLMasonUpdate', function()
     for _, package_name in ipairs(mason_packages) do
+      mason_registry.refresh()
       local package_list = mason_registry.get_all_package_names()
 
       if not vim.tbl_contains(package_list, package_name) then
