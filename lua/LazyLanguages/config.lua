@@ -63,7 +63,7 @@ M.setup = function(opts)
     end,
   })
 
-  vim.api.nvim_create_user_command('LLDumpConfig', function(options)
+  vim.api.nvim_create_user_command('LLCreateOverride', function(options)
     if type(vim.g.lazylangs.override_path) ~= 'string' then
       vim_helpers.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config", vim.log.levels.ERROR)
       return

@@ -9,6 +9,10 @@ configurations that I conflate to be the same in the provided language
 configurations. You can also add custom languages or different configurations
 for the same language if you wish.
 
+## Installing
+
+TODO: This
+
 ## Compiled Languages
 
 | Language Name | LSP | DAP Support | Language Aliases|
@@ -37,6 +41,13 @@ for the same language if you wish.
 | Latex | ✅ | latex/tex |
 | Markdown | ✅ | markdown/md |
 | HTML/CSS |  ✅  | html/css |
+
+## Overriding A Language
+
+To override a language you can either add a file with the appropriate name in
+your configured override directory or you can use the provided
+`LLConfigOverride` command which will dump the existing config into the
+language override directory.
 
 ## Language TODO
 | Language Name | LSP | DAP Support | Language Aliases |
