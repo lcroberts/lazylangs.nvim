@@ -45,7 +45,9 @@ to the configuration file by clicking on the language name.
 - Formatter: rustfmt (plugin configured)
 - Additional Plugins:
     - mrcjkb/rustaceanvim
-- Notes: Uses your systems rust analyzer so that it is in sync with the toolchain you are using.
+- Notes: Uses your systems rust analyzer so that it is in sync with the
+toolchain you are using. It will automatically install rust-analyzer for the
+current toolchain if rustup is available.
 
 ## [C/Cpp](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/c.lua)
 - LSP: Clangd
