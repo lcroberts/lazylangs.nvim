@@ -1,3 +1,4 @@
+local config = require 'LazyLanguages.config'
 ---@module "LazyLanguages"
 ---@type ll.Language
 return {
@@ -12,8 +13,8 @@ return {
           tools = {},
           -- LSP configuration
           server = {
-            on_attach = require('LazyLanguages.config').lsp.on_attach, -- Config should be loaded by the time this is ran
-            capabilities = require('LazyLanguages.config').lsp.capabilities,
+            on_attach = config.lsp.on_attach, -- Config should be loaded by the time this is ran
+            capabilities = config.lsp.capabilities,
           },
         }
       end,

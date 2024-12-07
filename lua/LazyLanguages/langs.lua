@@ -1,9 +1,5 @@
 local path_helpers = require 'LazyLanguages.helpers.paths'
 local vim_helpers = require 'LazyLanguages.helpers.vim'
-local config = require 'LazyLanguages.config'
-local conform = require 'conform'
-local mason_registry = require 'mason-registry'
-local lspconfig = require 'lspconfig'
 
 local M = {}
 
@@ -56,6 +52,9 @@ local function package_install(package)
 end
 
 M.language_setup = function()
+  local conform = require 'conform'
+  local config = require 'LazyLanguages.config'
+  local lspconfig = require 'lspconfig'
   local mason_packages = {}
 
   for _, language in ipairs(vim.g.lazylangs.langs or {}) do
@@ -97,6 +96,7 @@ M.language_setup = function()
   end
 
   vim.api.nvim_create_user_command('LLMasonInstall', function()
+    local mason_registry = require 'mason-registry'
     mason_registry.refresh()
     for _, package_name in ipairs(mason_packages) do
       local package_list = mason_registry.get_all_package_names()
@@ -112,6 +112,7 @@ M.language_setup = function()
   end, {})
 
   vim.api.nvim_create_user_command('LLMasonUpdate', function()
+    local mason_registry = require 'mason-registry'
     for _, package_name in ipairs(mason_packages) do
       mason_registry.refresh()
       local package_list = mason_registry.get_all_package_names()
