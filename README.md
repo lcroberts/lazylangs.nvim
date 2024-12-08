@@ -10,6 +10,19 @@ school, personal projects, and work and often different languages in each
 environment. This plugin was born out of a desire to easily be able to
 enable/disable languages on a per machine and per week basis.
 
+## Table of Contents
+
+- [Language Support](#language-support)
+    - [Compiled Languages](#compiled-languages)
+    - [Interpreted Languages](#interpreted-languages)
+    - [Markup Languages](#markup-languages)
+- [Installing](#installing)
+    - [Device Specific Languages](#device-specific-languages)
+    - [Installing Mason Packages](#installing-mason-packages)
+- [Default Config Options](#default-config-options)
+- [Overriding A Language](#overriding-a-language)
+    - [Language Config Types](#language-config-types)
+
 
 ## Language Support
 
@@ -114,6 +127,13 @@ vim.g.lazylangs = {
 }
 ```
 
+### Installing Mason Packages
+
+If you do not use the automatic install options provided by the plugin you can
+still install the mason packages for all configured languages using
+`LLMasonInstall`. `LLMasonUpdate` can be used to update the packages installed
+by LazyLanguages, and `LLMasonClean` can be used to remove installed packages.
+
 ## Default Config Options
 
 ```lua
@@ -207,7 +227,7 @@ return {
 }
 ```
 
-### Language Override Types
+### Language Config Types
 
 ```lua
 ---@class ll.ServerConfiguration The configuration options for language server configuration
