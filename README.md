@@ -62,7 +62,8 @@ function.
 
 ```lua
 vim.g.lazylangs = {
-  override_path = 'languages', -- '.' separated path relative to the lua directory in this case from the neovim config directory it's 'lua/languages'
+  -- '.' separated path relative to the lua directory in this case from the neovim config directory it's 'lua/languages'
+  override_path = 'languages',
   langs = { "lua", "markdown", "python" }, -- List of strings of language names
 }
 ```
@@ -81,7 +82,9 @@ import statement that includes the language specific plugins.
     'stevearc/conform.nvim', -- Formatting
     'mfussenegger/nvim-dap', -- Debug adapter protocol support
     -- Optional
-    'hrsh7th/nvim-cmp', -- By default uses cmp.nvim to generate base capabilities if it's available. If you are using a different completion engine put that here and override the capabilities.
+    -- By default uses cmp.nvim to generate base capabilities if it's available.
+    -- If you are using a different completion engine put that here and override the capabilities.
+    'hrsh7th/nvim-cmp', 
   },
   ---@module 'LazyLanguages'
   ---@type ll.Config
@@ -93,8 +96,9 @@ import statement that includes the language specific plugins.
 ### Device Specific Languages
 
 ```lua
-local langs = { 'lua', 'bash', 'markdown' } --- List of default languages
-local success, file_langs = pcall(require, 'languages') -- Attempts to require lua/languages.lua, can be added to a gitignore or similar.
+local langs = { 'lua', 'bash', 'markdown' } -- List of default languages
+-- Attempts to require lua/languages.lua, can be added to a gitignore or similar.
+local success, file_langs = pcall(require, 'languages')
 if success then
   -- Add all new languages to list
   for _, language in ipairs(file_langs) do
@@ -225,6 +229,7 @@ return {
 ```
 
 ## Language TODO
+
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
 | F# | ❌ | ❌ | N/A |
