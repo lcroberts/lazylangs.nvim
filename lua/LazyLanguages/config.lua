@@ -29,7 +29,8 @@ local config = {
       end
     end,
 
-    ---Default LSP client capabilities. May be extended/modified via individual language configs
+    ---Default LSP client capabilities. May be extended/modified via individual language configs.
+    ---Capabilities are merged when setting up the language server. So you only need to put overrides in language specific configs.
     ---@type lsp.ClientCapabilities
     capabilities = capabilities,
 
