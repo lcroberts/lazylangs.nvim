@@ -82,7 +82,9 @@ vim.g.lazylangs = {
 ```
 
 Next you need to add the plugin with it's appropriate dependencies and the
-import statement that includes the language specific plugins.
+import statement that includes the language specific plugins. If you wish to
+see example configs for the various dependencies they are available in the
+examples directory.
 
 ```lua
 {
