@@ -49,6 +49,7 @@ For more information on any individual language configs see [languages.md](https
 | C/Cpp | ✅ | ✅ | c/cpp |
 | Zig | ✅ | ✅ | zig |
 | Odin | ✅ | ✅ | odin |
+| scala | ✅ | ✅ | scala |
 
 ### Interpreted Languages
 
@@ -255,7 +256,6 @@ return {
 
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
-| Scala | ❌ | ❌ | N/A |
 | Kotlin | ❌ | ❌ | N/A |
 | Elixir | ❌ | ❌ | N/A |
 | Erlang | ❌ | ❌ | N/A |

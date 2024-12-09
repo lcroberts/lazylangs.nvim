@@ -20,6 +20,7 @@ to the configuration file by clicking on the language name.
 - [Latex](#Latex)
 - [Markdown](#Markdown)
 - [HTML/CSS](#HTMLCSS)
+- [Scala](#Scala)
 
 ## [Go](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/go.lua)
 
@@ -112,3 +113,9 @@ to the configuration file by clicking on the language name.
 - Formatter: LSP Builtin
 - Additional Plugins: None
 
+## [Scala](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/scala.lua)
+- LSP: metals (plugin configured)
+- Formatter: LSP Builtin
+- Additional Plugins:
+    - scalameta/nvim-metals - does most of the heavy lifting as far as debugging and lsp goes
+- Notes: Requires coursier to be installed
