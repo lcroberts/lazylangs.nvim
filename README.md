@@ -44,6 +44,7 @@ For more information on any individual language configs see [languages.md](https
 | Go | ✅ | ✅ | go |
 | Java | ✅ | ✅ | java |
 | C# | ✅ | ✅ | csharp/cs |
+| F# | ✅ | ✅ | fsharp/fs |
 | Rust | ✅ | ✅ | rust/rs |
 | C/Cpp | ✅ | ✅ | c/cpp |
 | Zig | ✅ | ✅ | zig |
@@ -254,7 +255,6 @@ return {
 
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
-| F# | ❌ | ❌ | N/A |
 | Scala | ❌ | ❌ | N/A |
 | Kotlin | ❌ | ❌ | N/A |
 | Elixir | ❌ | ❌ | N/A |

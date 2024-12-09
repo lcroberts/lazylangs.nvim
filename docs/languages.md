@@ -8,6 +8,7 @@ to the configuration file by clicking on the language name.
 - [Go](#Go)
 - [Java](#Java)
 - [C Sharp](#C-Sharp)
+- [F Sharp](#F-Sharp)
 - [Rust](#Rust)
 - [C/Cpp](#CCpp)
 - [Zig](#Zig)
@@ -40,6 +41,13 @@ to the configuration file by clicking on the language name.
 - LSP: Omnisharp
 - Formatter: LSP Builtin
 - Additional Plugins: None
+- Notes: Requires dotnet
+
+## [F Sharp](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/fsharp.lua)
+- LSP: fsautocomplete
+- Formatter: fantomas
+- Additional Plugins: None
+- Notes: Requires dotnet
 
 ## [Rust](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/rust.lua)
 - LSP: Rust Analyzer (plugin configured)

@@ -32,7 +32,7 @@ return {
   setup = function()
     local dap = require 'dap'
 
-    dap.adapters.coreclr = {
+    dap.adapters.csharp = {
       type = 'executable',
       command = require('LazyLanguages.helpers.paths').mason_bin_path 'netcoredbg',
       args = { '--interpreter=vscode' },
@@ -40,7 +40,7 @@ return {
 
     dap.configurations.cs = {
       {
-        type = 'coreclr',
+        type = 'csharp',
         name = 'launch - netcoredbg',
         request = 'launch',
         program = function()
