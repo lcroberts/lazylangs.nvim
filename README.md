@@ -27,7 +27,7 @@ enable/disable languages on a per machine and per week basis.
 ## Language Support
 
 Language aliases are what you put in the list that you provide to
-LazyLanguages. If a language has multiple aliases then they are symlinked to a
+LazyLanguages. If a language has multi]le aliases then they are symlinked to a
 main file that is the first one in the list below. The file lookups are based
 on file name so when you override a language you are actually overriding a
 language alias. This allows for you to have finer granularity over
@@ -49,7 +49,11 @@ For more information on any individual language configs see [languages.md](https
 | C/Cpp | ✅ | ✅ | c/cpp |
 | Zig | ✅ | ✅ | zig |
 | Odin | ✅ | ✅ | odin |
-| scala | ✅ | ✅ | scala |
+| Scala | ✅ | ✅ | scala |
+| Elixir | ✅ | ❌<sup>\*</sup> | elixir/ex/exs |
+
+> \*: Is set up according to documentation however it is nonfunctional.
+
 
 ### Interpreted Languages
 
@@ -257,7 +261,6 @@ return {
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
 | Kotlin | ❌ | ❌ | N/A |
-| Elixir | ❌ | ❌ | N/A |
 | Erlang | ❌ | ❌ | N/A |
 | Ocaml | ❌ | ❌ | N/A |
 | Haskell | ❌ | ❌ | N/A |

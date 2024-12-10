@@ -29,6 +29,11 @@ return {
         requireFiles = {
           'test/**/test_helper.exs',
           'test/**/*_test.exs',
+          -- for umbrella projects
+          'apps/**/test/**/test_helper.exs',
+          'apps/**/test/**/*_test.exs',
+          -- for PDQ
+          'lib/**/*_test.exs',
         },
       },
       {

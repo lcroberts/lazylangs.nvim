@@ -119,3 +119,11 @@ to the configuration file by clicking on the language name.
 - Additional Plugins:
     - scalameta/nvim-metals - does most of the heavy lifting as far as debugging and lsp goes
 - Notes: Requires coursier to be installed
+
+## [Elixir](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/elixir.lua)
+- LSP: elixir-ls
+- Formatter: LSP Builtin
+- Additional Plugins: None
+- Notes: Requires elixir and often times erlang to be installed. There are
+debugging profiles set up according to the documentation however I have been
+unable to verify they work.
