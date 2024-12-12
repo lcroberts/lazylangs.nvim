@@ -50,6 +50,7 @@ For more information on any individual language configs see [languages.md](https
 | Zig | ✅ | ✅ | zig |
 | Odin | ✅ | ✅ | odin |
 | Scala | ✅ | ✅ | scala |
+| Ocaml | ✅ | ✅ | ocaml/ml |
 | Elixir | ✅ | ❌<sup>\*</sup> | elixir/ex/exs |
 
 > \*: Is set up according to documentation however it is nonfunctional.
@@ -260,9 +261,7 @@ return {
 
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
-| Kotlin | ❌ | ❌ | N/A |
 | Erlang | ❌ | ❌ | N/A |
-| Ocaml | ❌ | ❌ | N/A |
 | Haskell | ❌ | ❌ | N/A |
 | PHP | ❌ | ❌ | N/A |
 | Ruby | ❌ | ❌ | N/A |

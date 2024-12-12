@@ -21,6 +21,8 @@ to the configuration file by clicking on the language name.
 - [Markdown](#Markdown)
 - [HTML/CSS](#HTMLCSS)
 - [Scala](#Scala)
+- [Elixir](#Elixir)
+- [Ocaml](#Ocaml)
 
 ## [Go](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/go.lua)
 
@@ -127,3 +129,9 @@ to the configuration file by clicking on the language name.
 - Notes: Requires elixir and often times erlang to be installed. There are
 debugging profiles set up according to the documentation however I have been
 unable to verify they work.
+
+## [Ocaml](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/lua/LazyLanguages/languages/ocaml.lua)
+- LSP: ocaml-lsp
+- Formatter: ocamlfmt
+- Additional Plugins: None
+- Notes: Requires opam to be installed
