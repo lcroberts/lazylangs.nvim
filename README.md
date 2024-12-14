@@ -51,9 +51,7 @@ For more information on any individual language configs see [languages.md](https
 | Odin | ✅ | ✅ | odin |
 | Scala | ✅ | ✅ | scala |
 | Ocaml | ✅ | ✅ | ocaml/ml |
-| Elixir | ✅ | ❌<sup>\*</sup> | elixir/ex/exs |
-
-> \*: Is set up according to documentation however it is nonfunctional.
+| Elixir | ✅ | ✅ | elixir/ex/exs |
 
 
 ### Interpreted Languages

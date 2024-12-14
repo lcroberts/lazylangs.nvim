@@ -1,10 +1,31 @@
 ---@module "LazyLanguages"
 ---@type ll.Language
 return {
-  lsp = {
-    name = 'elixirls',
-    server_configuration = {
-      cmd = { require('LazyLanguages.helpers.paths').mason_bin_path 'elixir-ls' },
+  plugins = {
+    {
+      'elixir-tools/elixir-tools.nvim',
+      version = '*',
+      ft = { 'elixir', 'eelixir', 'heex', 'surface' },
+      config = function()
+        local elixir = require 'elixir'
+        local elixirls = require 'elixir.elixirls'
+
+        elixir.setup {
+          elixirls = {
+            enable = true,
+            settings = elixirls.settings {
+              dialyzerEnabled = true,
+            },
+            on_attach = function(client, bufnr)
+              require('LazyLanguages.config').lsp.on_attach(client, bufnr)
+            end,
+          },
+        }
+      end,
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'lcroberts/LazyLanguages.nvim',
+      },
     },
   },
   mason_packages = {
