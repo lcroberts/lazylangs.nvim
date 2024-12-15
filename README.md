@@ -35,7 +35,7 @@ configurations that I conflate to be the same in the provided language
 configurations. You can also add custom languages or different configurations
 for the same language if you wish.
 
-For more information on any individual language configs see [languages.md](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/docs/languages.md).
+For more information on any individual language configs see [languages.md](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/doc/languages.md).
 
 ### Compiled Languages
 
@@ -59,6 +59,7 @@ For more information on any individual language configs see [languages.md](https
 | Language Name | LSP | DAP Support | Language Aliases|
 | ------------- | :--------------: | :--------------: | --------------|
 | Python | ✅ | ✅ | python/py |
+| Ruby | ✅ | ✅ | ruby/rb |
 | Bash | ✅ | ❌ | bash/sh |
 | Lua | ✅ | ❌ | lua |
 | Javascript/Typescript | ✅ | ❌ | javascript/typescript/js/ts |
@@ -259,11 +260,13 @@ return {
 
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
-| Erlang | ❌ | ❌ | N/A |
-| Haskell | ❌ | ❌ | N/A |
 | PHP | ❌ | ❌ | N/A |
-| Ruby | ❌ | ❌ | N/A |
+| Haskell | ❌ | ❌ | N/A |
+| Erlang | ❌ | ❌ | N/A |
 | Dart | ❌ | ❌ | N/A |
 | Perl | ❌ | ❌ | N/A |
 | Julia | ❌ | ❌ | N/A |
 
+## TODO
+
+- Linting
