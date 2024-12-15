@@ -27,8 +27,10 @@ return {
     'prettierd',
   },
   formatters = {
-    'prettierd',
-    'prettier',
-    stop_after_first = true,
+    conform = {
+      'prettierd',
+      'prettier',
+      stop_after_first = true,
+    },
   },
 }

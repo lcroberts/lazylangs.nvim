@@ -9,5 +9,7 @@ return {
     'bash-language-server',
     'shfmt',
   },
-  formatters = { 'shfmt' },
+  formatters = {
+    conform = { 'shfmt' },
+  },
 }

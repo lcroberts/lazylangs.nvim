@@ -52,18 +52,22 @@ local function package_install(package)
 end
 
 M.language_setup = function()
-  local conform = require 'conform'
+  local _, conform = pcall(require, 'conform')
   local config = require 'LazyLanguages.config'
   local lspconfig = require 'lspconfig'
   local mason_packages = {}
 
   for _, language in ipairs(vim.g.lazylangs.langs or {}) do
     local language_table = M.language_tables[language]
-    -- Merge conform formatters_by_ft with the formatter settings in language file
-    local language_formatters = conform.formatters_by_ft[language] or {}
-    ---@diagnostic disable-next-line: param-type-mismatch
-    language_formatters = vim.tbl_deep_extend('force', language_formatters, language_table.formatters or {})
-    conform.formatters_by_ft[language] = language_formatters
+    if language_table.formatters ~= nil then
+      -- Merge conform formatters_by_ft with the formatter settings in language file
+      if config.formatting.plugin == 'conform' and language_table.formatters.conform ~= nil then
+        local language_formatters = conform.formatters_by_ft[language] or {}
+        ---@diagnostic disable-next-line: param-type-mismatch
+        language_formatters = vim.tbl_deep_extend('force', language_formatters, language_table.formatters.conform or {})
+        conform.formatters_by_ft[language] = language_formatters
+      end
+    end
 
     -- Take lsp configuration and merge it with the capabilities generated in the file.
     if language_table.lsp ~= nil then

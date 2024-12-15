@@ -7,7 +7,7 @@ if success then
   capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
 end
 
---- @class ll.Config
+---@class ll.Config
 local config = {
   mason = {
     ---Are mason packages for languages automatically installed
@@ -17,6 +17,12 @@ local config = {
     ---Are mason packages for languages automatically updated
     ---@type boolean
     automatic_update = false,
+  },
+
+  formatting = {
+    ---Which formatting plugin is used.
+    ---@type "conform"
+    plugin = 'conform',
   },
 
   lsp = {

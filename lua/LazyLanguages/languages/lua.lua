@@ -42,9 +42,10 @@ return {
       },
     },
   },
-  -- Should be in the form conform expects for formatters_by_ft
   formatters = {
-    'stylua',
+    conform = {
+      'stylua',
+    },
   },
   mason_packages = {
     'lua-language-server',

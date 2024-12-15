@@ -5,7 +5,9 @@ return {
     name = 'ocamllsp',
     server_configuration = {},
   },
-  formatters = { 'ocamlformat', lsp_fallback = true },
+  formatters = {
+    conform = { 'ocamlformat', lsp_fallback = true },
+  },
   mason_packages = {
     'ocaml-lsp',
     'ocamlformat',
