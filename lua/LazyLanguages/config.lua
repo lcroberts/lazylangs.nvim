@@ -64,12 +64,12 @@ M.setup = function(opts)
   config = vim.tbl_deep_extend('keep', opts, config)
 
   if config.lsp.capabilities == nil then
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
     if config.completion.plugin == 'nvim-cmp' then
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
       local cmp_lsp = require 'cmp_nvim_lsp'
       config.lsp.capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
     elseif config.completion.plugin == 'blink.cmp' then
-      config.lsp.capabilities = require('blink.cmp').get_lsp_capabiliteies {}
+      config.lsp.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
     end
   end
 
