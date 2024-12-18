@@ -199,7 +199,7 @@ Below is the config for C which uses all available features. The types section b
 ---@module "LazyLanguages"
 ---@type ll.Language
 return {
-  -- Adds plugins for the language
+  -- Adds plugins for the language. It is just a lazy plugin spec.
   plugins = {
     {
       'p00f/clangd_extensions.nvim',
@@ -207,10 +207,13 @@ return {
       opts = {},
     },
   },
-  -- Sets up the LSP
+  -- Sets up the LSP, can also be a list of lsp configurations.
   lsp = {
     name = 'clangd', -- LSP name as dictated by nvim-lspconfig
     server_configuration = {
+      -- cmd = {...},
+      -- filetypes = {...},
+      -- settings = {...},
       capabilities = {
         offsetEncoding = 'utf-8',
       },
@@ -221,7 +224,7 @@ return {
     'clangd',
     'codelldb',
   },
-  -- Additional code to run as part of language setup process.
+  -- Additional code to run as part of language setup process. Executes after the rest of the configuration.
   setup = function()
     local dap = require 'dap'
     local dap_helpers = require 'LazyLanguages.helpers.dap'
@@ -246,11 +249,11 @@ return {
 
 ---@class ll.LSP The LSP configuration table
 ---@field name string A language server name as defined by nvim-lspconfig.
----@field server_configuration ll.ServerConfiguration Language server configuration options. See relevant doccumentation.
+---@field server_configuration ll.ServerConfiguration Language server configuration options. See relevant documentation.
 
 ---@class ll.Language The language configuration table structure
 ---@field plugins table? A lazy plugin spec. It is loaded by lazy and processed as any other would be.
----@field lsp ll.LSP? LSP configuration options. See relevant doccumentation.
+---@field lsp ll.LSP|ll.LSP[]? LSP configuration options. See relevant documentation.
 ---@field mason_packages string[]? A list of mason packages to be included in operations performed by LLMasonInstall, LLMasonUpdate, and LLMasonClean
 ---@field formatters table? A conform.nvim formatter spec.
 ---@field setup function? An additional function that gets called as part of the language setup. Any desired code can go here but long running code should be put into an autocommand that runs on UIEnter.
