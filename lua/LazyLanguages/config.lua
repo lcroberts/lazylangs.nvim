@@ -1,11 +1,6 @@
 local path_helpers = require 'LazyLanguages.helpers.paths'
 local vim_helpers = require 'LazyLanguages.helpers.vim'
 local M = {}
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local success, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
-if success then
-  capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
-end
 
 ---@class ll.Config
 local config = {
@@ -22,7 +17,20 @@ local config = {
   formatting = {
     ---Which formatting plugin is used.
     ---@type "conform"
-    plugin = 'conform',
+    plugin = 'conform', -- https://github.com/stevearc/conform.nvim
+  },
+
+  --TODO: Implement
+  linting = {
+    ---Which linting plugin is used
+    ---@type "nvim-lint"
+    plugin = 'nvim-lint', -- https://github.com/mfussenegger/nvim-lint
+  },
+
+  completion = {
+    ---Which completion plugin is used for the default capabilities and any other completion sensitive things
+    ---@type "nvim-cmp"|"blink.cmp"
+    plugin = 'nvim-cmp',
   },
 
   lsp = {
@@ -37,8 +45,9 @@ local config = {
 
     ---Default LSP client capabilities. May be extended/modified via individual language configs.
     ---Capabilities are merged when setting up the language server. So you only need to put overrides in language specific configs.
+    ---The default value is generated based on the completion plugin you use.
     ---@type lsp.ClientCapabilities
-    capabilities = capabilities,
+    capabilities = nil,
 
     ---Flags for controlling the behavior of lsps
     ---@type table
@@ -53,6 +62,16 @@ local config = {
 M.setup = function(opts)
   opts = opts or {}
   config = vim.tbl_deep_extend('keep', opts, config)
+
+  if config.lsp.capabilities == nil then
+    if config.completion.plugin == 'nvim-cmp' then
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local cmp_lsp = require 'cmp_nvim_lsp'
+      config.lsp.capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
+    elseif config.completion.plugin == 'blink.cmp' then
+      config.lsp.capabilities = require('blink.cmp').get_lsp_capabiliteies {}
+    end
+  end
 
   require('LazyLanguages.langs').language_setup()
 
