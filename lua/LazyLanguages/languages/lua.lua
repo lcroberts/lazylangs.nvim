@@ -1,5 +1,3 @@
-local config = require 'LazyLanguages.config'
-
 local plugins = {
   {
     'folke/lazydev.nvim',
@@ -28,20 +26,24 @@ local cmp = {
 
 local blink = {
   'saghen/blink.cmp',
-  opts = function(_, opts)
-    table.insert(opts.sources.completion.enabled_providers, 'lazydev')
-    if opts.sources.providers.lsp == nil then
-      opts.sources.providers.lsp = { fallback_for = { 'lazydev' } }
-    else
-      opts.sources.providers.lsp.fallback_for = { 'lazydev' }
-    end
-    opts.sources.providers.lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' }
-  end,
+  opts = {
+    sources = {
+      -- add lazydev to your completion providers
+      default = { 'lazydev' },
+      providers = {
+        -- dont show LuaLS require statements when lazydev has items
+        lsp = { fallback_for = { 'lazydev' } },
+        lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink' },
+      },
+    },
+    opts_extend = { 'sources.default', 'sources.providers' },
+  },
 }
 
-if config.completion.plugin == 'nvim-cmp' then
+local completion_plugin = vim.g.lazylangs.completion_plugin or 'nvim-cmp'
+if completion_plugin == 'nvim-cmp' then
   table.insert(plugins, cmp)
-elseif config.completion.plugin == 'blink.cmp' then
+elseif completion_plugin == 'blink.cmp' then
   table.insert(plugins, blink)
 end
 

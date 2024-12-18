@@ -51,6 +51,29 @@ local function package_install(package)
   package:install { force = true }
 end
 
+local function handle_lsp(lsp_table, config, lspconfig)
+  -- Take lsp configuration and merge it with the capabilities generated in the file.
+  if lsp_table ~= nil then
+    if lsp_table.name == nil then
+      for _, lsp in ipairs(lsp_table) do
+        local lsp_config = vim.tbl_deep_extend('force', {}, {
+          capabilities = config.lsp.capabilities,
+          on_attach = config.lsp.on_attach,
+          flags = config.lsp.flags,
+        }, lsp.server_configuration or {})
+        lspconfig[lsp.name].setup(lsp_config)
+      end
+    else
+      local lsp_config = vim.tbl_deep_extend('force', {}, {
+        capabilities = config.lsp.capabilities,
+        on_attach = config.lsp.on_attach,
+        flags = config.lsp.flags,
+      }, lsp_table.server_configuration or {})
+      lspconfig[lsp_table.name].setup(lsp_config)
+    end
+  end
+end
+
 M.language_setup = function()
   local _, conform = pcall(require, 'conform')
   local config = require 'LazyLanguages.config'
@@ -69,26 +92,7 @@ M.language_setup = function()
       end
     end
 
-    -- Take lsp configuration and merge it with the capabilities generated in the file.
-    if language_table.lsp ~= nil then
-      if language_table.lsp.name == nil then
-        for _, lsp in ipairs(language_table.lsp) do
-          local lsp_config = vim.tbl_deep_extend('force', {}, {
-            capabilities = config.lsp.capabilities,
-            on_attach = config.lsp.on_attach,
-            flags = config.lsp.flags,
-          }, lsp.server_configuration or {})
-          lspconfig[lsp.name].setup(lsp_config)
-        end
-      else
-        local lsp_config = vim.tbl_deep_extend('force', {}, {
-          capabilities = config.lsp.capabilities,
-          on_attach = config.lsp.on_attach,
-          flags = config.lsp.flags,
-        }, language_table.lsp.server_configuration or {})
-        lspconfig[language_table.lsp.name].setup(lsp_config)
-      end
-    end
+    handle_lsp(language_table.lsp, config, lspconfig)
 
     for _, package in ipairs(language_table.mason_packages or {}) do
       table.insert(mason_packages, package)

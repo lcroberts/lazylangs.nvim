@@ -27,12 +27,6 @@ local config = {
     plugin = 'nvim-lint', -- https://github.com/mfussenegger/nvim-lint
   },
 
-  completion = {
-    ---Which completion plugin is used for the default capabilities and any other completion sensitive things
-    ---@type "nvim-cmp"|"blink.cmp"
-    plugin = 'nvim-cmp',
-  },
-
   lsp = {
     ---The lsp on attach function to be forwarded to lspconfig
     ---@param client vim.lsp.Client
@@ -64,12 +58,13 @@ M.setup = function(opts)
   config = vim.tbl_deep_extend('keep', opts, config)
 
   if config.lsp.capabilities == nil then
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    if config.completion.plugin == 'nvim-cmp' then
+    local completion_plugin = vim.g.lazylangs.completion_plugin or 'nvim-cmp'
+    if completion_plugin == 'nvim-cmp' then
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
       local cmp_lsp = require 'cmp_nvim_lsp'
       config.lsp.capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
-    elseif config.completion.plugin == 'blink.cmp' then
-      config.lsp.capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+    elseif completion_plugin == 'blink.cmp' then
+      config.lsp.capabilities = require('blink.cmp').get_lsp_capabilities()
     end
   end
 

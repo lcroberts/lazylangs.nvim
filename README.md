@@ -84,6 +84,7 @@ vim.g.lazylangs = {
   -- '.' separated path relative to the lua directory in this case from the neovim config directory it's 'lua/languages'
   override_path = 'languages',
   langs = { "lua", "markdown", "python" }, -- List of strings of language names
+  completion_plugin = "nvim-cmp", -- blink.cmp is also valid
 }
 ```
 
@@ -143,6 +144,8 @@ still install the mason packages for all configured languages using
 by LazyLanguages, and `LLMasonClean` can be used to remove installed packages.
 
 ## Default Config Options
+
+<!-- TODO: Update this once the config is finalized -->
 
 ```lua
 local capabilities = vim.lsp.protocol.make_client_capabilities()
