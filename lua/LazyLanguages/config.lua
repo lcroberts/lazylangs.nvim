@@ -95,7 +95,7 @@ M.setup = function(opts)
       return
     end
     local language = string.lower(options.args)
-    success, _ = pcall(require, 'LazyLanguages.languages.' .. language)
+    local success, _ = pcall(require, 'LazyLanguages.languages.' .. language)
     if not success then
       vim_helpers.notify(string.format("'%s' is not a language supported by LazyLanguages", language), vim.log.levels.WARN)
       return
