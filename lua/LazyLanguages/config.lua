@@ -14,13 +14,6 @@ local config = {
     automatic_update = false,
   },
 
-  -- TODO: Fix formatting plugin usage
-  formatting = {
-    ---Which formatting plugin is used.
-    ---@type "conform"
-    plugin = 'conform', -- https://github.com/stevearc/conform.nvim
-  },
-
   lsp = {
     ---The lsp on attach function to be forwarded to lspconfig
     ---@param client vim.lsp.Client

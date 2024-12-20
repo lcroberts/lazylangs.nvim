@@ -14,6 +14,8 @@ return {
     conform = { 'shfmt' },
   },
   linters = {
-    bash = { 'shellcheck' },
+    nvim_lint = {
+      bash = { 'shellcheck' },
+    },
   },
 }

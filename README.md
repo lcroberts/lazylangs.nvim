@@ -89,6 +89,9 @@ vim.g.lazylangs = {
   ---Optional completion engine plugin to be used
   ---@type "nvim-cmp"|"blink.cmp"
   completion_plugin = "nvim-cmp",
+  ---Optional formatting plugin is used.
+  ---@type "conform"
+  formatting_plugin = 'conform',
   ---Optional linting plugin to be used
   ---@type "nvim-lint"
   linting_plugin = 'nvim-lint',
@@ -152,14 +155,8 @@ by LazyLanguages, and `LLMasonClean` can be used to remove installed packages.
 
 ## Default Config Options
 
-<!-- TODO: Update this once the config is finalized -->
-
 ```lua
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local success, cmp_lsp = pcall(require, 'cmp_nvim_lsp')
-if success then
-  capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
-end
+---@class ll.Config
 local config = {
   mason = {
     ---Are mason packages for languages automatically installed
@@ -183,8 +180,9 @@ local config = {
 
     ---Default LSP client capabilities. May be extended/modified via individual language configs.
     ---Capabilities are merged when setting up the language server. So you only need to put overrides in language specific configs.
+    ---The default value is generated based on the completion plugin you use.
     ---@type lsp.ClientCapabilities
-    capabilities = capabilities, -- cmp's recommended capabilities by default
+    capabilities = nil,
 
     ---Flags for controlling the behavior of lsps
     ---@type table
@@ -275,12 +273,9 @@ return {
 | Language Name | LSP | DAP Support | Language Aliases |
 | ------------- | --- | ----------- | ---------------- |
 | PHP | ❌ | ❌ | N/A |
+| Gleam | ❌ | ❌ | N/A |
 | Haskell | ❌ | ❌ | N/A |
 | Erlang | ❌ | ❌ | N/A |
 | Dart | ❌ | ❌ | N/A |
 | Perl | ❌ | ❌ | N/A |
 | Julia | ❌ | ❌ | N/A |
-
-## TODO
-
-- Linting
