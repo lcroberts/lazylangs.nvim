@@ -13,4 +13,5 @@
 ---@field lsp ll.LSP|ll.LSP[]? LSP configuration options. See relevant documentation.
 ---@field mason_packages string[]? A list of mason packages to be included in operations performed by LLMasonInstall, LLMasonUpdate, and LLMasonClean
 ---@field formatters table? A conform.nvim formatter spec.
+---@field linters table? A mapping of filetypes to linters
 ---@field setup function? An additional function that gets called as part of the language setup. Any desired code can go here but long running code should be put into an autocommand that runs on UIEnter.

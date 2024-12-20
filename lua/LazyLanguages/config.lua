@@ -14,17 +14,11 @@ local config = {
     automatic_update = false,
   },
 
+  -- TODO: Fix formatting plugin usage
   formatting = {
     ---Which formatting plugin is used.
     ---@type "conform"
     plugin = 'conform', -- https://github.com/stevearc/conform.nvim
-  },
-
-  --TODO: Implement
-  linting = {
-    ---Which linting plugin is used
-    ---@type "nvim-lint"
-    plugin = 'nvim-lint', -- https://github.com/mfussenegger/nvim-lint
   },
 
   lsp = {
@@ -58,13 +52,15 @@ M.setup = function(opts)
   config = vim.tbl_deep_extend('keep', opts, config)
 
   if config.lsp.capabilities == nil then
-    local completion_plugin = vim.g.lazylangs.completion_plugin or 'nvim-cmp'
+    local completion_plugin = vim.g.lazylangs.completion_plugin or nil
     if completion_plugin == 'nvim-cmp' then
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       local cmp_lsp = require 'cmp_nvim_lsp'
       config.lsp.capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
     elseif completion_plugin == 'blink.cmp' then
       config.lsp.capabilities = require('blink.cmp').get_lsp_capabilities()
+    else
+      config.lsp.capabilities = vim.lsp.protocol.make_client_capabilities()
     end
   end
 

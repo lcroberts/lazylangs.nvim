@@ -8,8 +8,12 @@ return {
   mason_packages = {
     'bash-language-server',
     'shfmt',
+    'shellcheck',
   },
   formatters = {
     conform = { 'shfmt' },
+  },
+  linters = {
+    bash = { 'shellcheck' },
   },
 }

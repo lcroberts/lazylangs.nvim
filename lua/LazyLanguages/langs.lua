@@ -74,11 +74,32 @@ local function handle_lsp(lsp_table, config, lspconfig)
   end
 end
 
+local function handle_nvim_lint(linter_table, lint)
+  for filetype, linters in pairs(linter_table) do
+    if lint.linters_by_ft[filetype] == nil then
+      lint.linters_by_ft[filetype] = linters
+    else
+      for _, linter in ipairs(linters) do
+        table.insert(lint.linters_by_ft[filetype], linter)
+      end
+    end
+  end
+end
+
 M.language_setup = function()
   local _, conform = pcall(require, 'conform')
   local config = require 'LazyLanguages.config'
   local lspconfig = require 'lspconfig'
   local mason_packages = {}
+  local linting_plugin = vim.g.lazylangs.linting_plugin or nil
+  local lint
+  if linting_plugin == 'nvim-lint' then
+    local success
+    success, lint = pcall(require, 'lint')
+    if not success then
+      require('LazyLanguages.helpers.vim').notify_once('nvim-lint is not installed', vim.log.levels.ERROR)
+    end
+  end
 
   for _, language in ipairs(vim.g.lazylangs.langs or {}) do
     local language_table = M.language_tables[language]
@@ -93,6 +114,9 @@ M.language_setup = function()
     end
 
     handle_lsp(language_table.lsp, config, lspconfig)
+    if linting_plugin == 'nvim-lint' then
+      handle_nvim_lint(language_table.linters, lint)
+    end
 
     for _, package in ipairs(language_table.mason_packages or {}) do
       table.insert(mason_packages, package)

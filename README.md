@@ -82,9 +82,16 @@ function.
 ```lua
 vim.g.lazylangs = {
   -- '.' separated path relative to the lua directory in this case from the neovim config directory it's 'lua/languages'
+  ---@type string
   override_path = 'languages',
+  ---@type string[]
   langs = { "lua", "markdown", "python" }, -- List of strings of language names
-  completion_plugin = "nvim-cmp", -- blink.cmp is also valid
+  ---Optional completion engine plugin to be used
+  ---@type "nvim-cmp"|"blink.cmp"
+  completion_plugin = "nvim-cmp",
+  ---Optional linting plugin to be used
+  ---@type "nvim-lint"
+  linting_plugin = 'nvim-lint',
 }
 ```
 
@@ -259,6 +266,7 @@ return {
 ---@field lsp ll.LSP|ll.LSP[]? LSP configuration options. See relevant documentation.
 ---@field mason_packages string[]? A list of mason packages to be included in operations performed by LLMasonInstall, LLMasonUpdate, and LLMasonClean
 ---@field formatters table? A conform.nvim formatter spec.
+---@field linters table? A mapping of filetypes to linters
 ---@field setup function? An additional function that gets called as part of the language setup. Any desired code can go here but long running code should be put into an autocommand that runs on UIEnter.
 ```
 
