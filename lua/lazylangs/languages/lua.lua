@@ -48,7 +48,7 @@ elseif completion_plugin == 'blink.cmp' then
   table.insert(plugins, blink)
 end
 
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   plugins = plugins,

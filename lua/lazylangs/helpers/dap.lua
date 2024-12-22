@@ -4,7 +4,7 @@ M.codelldb_adapter_config = {
   type = 'server',
   port = '${port}',
   executable = {
-    command = require('LazyLanguages.helpers.paths').mason_bin_path 'codelldb',
+    command = require('lazylangs.helpers.paths').mason_bin_path 'codelldb',
     args = { '--port', '${port}' },
     -- On windows you may have to uncomment this:
     -- detached = false,

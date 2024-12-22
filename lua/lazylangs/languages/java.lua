@@ -1,4 +1,4 @@
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   plugins = {
@@ -6,7 +6,7 @@ return {
       'mfussenegger/nvim-jdtls',
       config = function()
         local opts = {
-          cmd = { vim.fn.stdpath 'data' .. ('/mason/bin/jdtls'):gsub('/', require('LazyLanguages.helpers.paths').path_separator) },
+          cmd = { vim.fn.stdpath 'data' .. ('/mason/bin/jdtls'):gsub('/', require('lazylangs.helpers.paths').path_separator) },
           settings = {
             java = {
               inlayHints = {
@@ -22,10 +22,10 @@ return {
             bundles = {
               vim.fn.glob(
                 vim.fn.stdpath 'data'
-                  .. ('/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar'):gsub(
-                    '/',
-                    require('LazyLanguages.helpers.paths').path_separator
-                  ),
+                .. ('/mason/packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar'):gsub(
+                  '/',
+                  require('lazylangs.helpers.paths').path_separator
+                ),
                 true
               ),
             },

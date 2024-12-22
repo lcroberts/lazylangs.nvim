@@ -1,4 +1,4 @@
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   plugins = {
@@ -11,7 +11,7 @@ return {
       opts = function()
         local metals_config = require('metals').bare_config()
         metals_config.on_attach = function(client, buffer)
-          require('LazyLanguages.config').lsp.on_attach(client, buffer)
+          require('lazylangs.config').lsp.on_attach(client, buffer)
           require('metals').setup_dap()
         end
 

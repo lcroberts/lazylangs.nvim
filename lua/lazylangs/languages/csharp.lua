@@ -1,10 +1,10 @@
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   lsp = {
     name = 'omnisharp',
     server_configuration = {
-      cmd = { require('LazyLanguages.helpers.paths').mason_bin_path 'omnisharp' },
+      cmd = { require('lazylangs.helpers.paths').mason_bin_path 'omnisharp' },
       settings = {
         RoslynExtensionsOptions = {
           InlayHintsOptions = {
@@ -34,7 +34,7 @@ return {
 
     dap.adapters.csharp = {
       type = 'executable',
-      command = require('LazyLanguages.helpers.paths').mason_bin_path 'netcoredbg',
+      command = require('lazylangs.helpers.paths').mason_bin_path 'netcoredbg',
       args = { '--interpreter=vscode' },
     }
 

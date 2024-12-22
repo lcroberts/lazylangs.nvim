@@ -1,4 +1,4 @@
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   lsp = {
@@ -15,7 +15,7 @@ return {
 
     dap.adapters.fsharp = {
       type = 'executable',
-      command = require('LazyLanguages.helpers.paths').mason_bin_path 'netcoredbg',
+      command = require('lazylangs.helpers.paths').mason_bin_path 'netcoredbg',
       args = { '--interpreter=vscode' },
     }
 

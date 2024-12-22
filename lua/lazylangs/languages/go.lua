@@ -1,4 +1,4 @@
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   plugins = {
@@ -10,7 +10,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
       },
       config = function()
-        require('go').setup()
+        require('lazylangs.languages.go').setup()
       end,
       event = { 'CmdlineEnter' },
       ft = { 'go', 'gomod', 'gowork', 'gotmpl' },

@@ -1,15 +1,15 @@
-local path_helpers = require 'LazyLanguages.helpers.paths'
-local vim_helpers = require 'LazyLanguages.helpers.vim'
+local path_helpers = require 'lazylangs.helpers.paths'
+local vim_helpers = require 'lazylangs.helpers.vim'
 
 local M = {}
 
 local expanded_override_path = nil
 if type(vim.g.lazylangs.override_path) == 'string' then
   expanded_override_path = vim.fn.stdpath 'config'
-    .. path_helpers.path_separator
-    .. 'lua'
-    .. path_helpers.path_separator
-    .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
+      .. path_helpers.path_separator
+      .. 'lua'
+      .. path_helpers.path_separator
+      .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
 end
 
 M.language_tables = {}
@@ -22,7 +22,7 @@ for _, language in ipairs(vim.g.lazylangs.langs or {}) do
     if path_helpers.file_exists(override_file) then
       M.language_tables[language] = dofile(override_file)
     else
-      local success, tbl = pcall(require, 'LazyLanguages.languages.' .. language)
+      local success, tbl = pcall(require, 'lazylangs.languages.' .. language)
       ---@cast tbl ll.Language
       if success then
         M.language_tables[language] = tbl
@@ -34,7 +34,7 @@ for _, language in ipairs(vim.g.lazylangs.langs or {}) do
 end
 
 local show = vim.schedule_wrap(function(msg)
-  vim.notify(msg, vim.log.levels.INFO, { title = 'LazyLanguages' })
+  vim.notify(msg, vim.log.levels.INFO, { title = 'lazylangs' })
 end)
 
 ---@param package Package
@@ -96,7 +96,7 @@ local function handle_conform(language, formatter_table, conform)
 end
 
 M.language_setup = function()
-  local config = require 'LazyLanguages.config'
+  local config = require 'lazylangs.config'
   local lspconfig = require 'lspconfig'
   local mason_packages = {}
   local linting_plugin = vim.g.lazylangs.linting_plugin or nil
@@ -105,7 +105,7 @@ M.language_setup = function()
     local success
     success, lint = pcall(require, 'lint')
     if not success then
-      require('LazyLanguages.helpers.vim').notify_once('nvim-lint is not installed', vim.log.levels.ERROR)
+      require('lazylangs.helpers.vim').notify_once('nvim-lint is not installed', vim.log.levels.ERROR)
     end
   end
   local formatting_plugin = vim.g.lazylangs.formatting_plugin or nil
@@ -114,7 +114,7 @@ M.language_setup = function()
     local success
     success, lint = pcall(require, 'conform')
     if not success then
-      require('LazyLanguages.helpers.vim').notify_once('conform is not installed', vim.log.levels.ERROR)
+      require('lazylangs.helpers.vim').notify_once('conform is not installed', vim.log.levels.ERROR)
     end
   end
 

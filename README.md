@@ -1,8 +1,8 @@
-# LazyLanguages.nvim
+# lazylangs.nvim
 
-LazyLanguages.nvim is a library of pre-made language configurations and mechanisms to easily turn them on and off. It also provides easy mechanisms to override/extend existing configurations.
+lazylangs.nvim is a library of pre-made language configurations and mechanisms to easily turn them on and off. It also provides easy mechanisms to override/extend existing configurations.
 
-LazyLanguages.nvim is a plugin built on top of
+lazylangs.nvim is a plugin built on top of
 [Lazy.nvim](https://github.com/folke/lazy.nvim) to provide premade language
 specific configuration and to enable easily enabling/disabling certain
 languages. I found myself commonly needing to use different languages for
@@ -27,7 +27,7 @@ enable/disable languages on a per machine and per week basis.
 ## Language Support
 
 Language aliases are what you put in the list that you provide to
-LazyLanguages. If a language has multi]le aliases then they are symlinked to a
+lazylangs. If a language has multi]le aliases then they are symlinked to a
 main file that is the first one in the list below. The file lookups are based
 on file name so when you override a language you are actually overriding a
 language alias. This allows for you to have finer granularity over
@@ -35,7 +35,7 @@ configurations that I conflate to be the same in the provided language
 configurations. You can also add custom languages or different configurations
 for the same language if you wish.
 
-For more information on any individual language configs see [languages.md](https://github.com/lcroberts/LazyLanguages.nvim/blob/main/doc/languages.md).
+For more information on any individual language configs see [languages.md](https://github.com/lcroberts/lazylangs.nvim/blob/main/doc/languages.md).
 
 ### Compiled Languages
 
@@ -105,7 +105,7 @@ examples directory.
 
 ```lua
 {
-  'lcroberts/LazyLanguages.nvim',
+  'lcroberts/lazylangs.nvim',
   event = 'VeryLazy',
   -- Dependencies should be configured independently
   dependencies = {
@@ -118,10 +118,10 @@ examples directory.
     -- If you are using a different completion engine put that here and override the capabilities.
     'hrsh7th/nvim-cmp', 
   },
-  ---@module 'LazyLanguages'
+  ---@module 'lazylangs'
   ---@type ll.Config
   opts = {}, -- Put whatever options you wish here
-  import = 'LazyLanguages.plugins', -- Imports language specific plugins
+  import = 'lazylangs.plugins', -- Imports language specific plugins
 }
 ```
 
@@ -151,7 +151,7 @@ vim.g.lazylangs = {
 If you do not use the automatic install options provided by the plugin you can
 still install the mason packages for all configured languages using
 `LLMasonInstall`. `LLMasonUpdate` can be used to update the packages installed
-by LazyLanguages, and `LLMasonClean` can be used to remove installed packages.
+by lazylangs, and `LLMasonClean` can be used to remove installed packages.
 
 ## Default Config Options
 
@@ -204,7 +204,7 @@ language override directory.
 Below is the config for C which uses all available features. The types section below shows all possible values.
 
 ```lua
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   -- Adds plugins for the language. It is just a lazy plugin spec.
@@ -235,7 +235,7 @@ return {
   -- Additional code to run as part of language setup process. Executes after the rest of the configuration.
   setup = function()
     local dap = require 'dap'
-    local dap_helpers = require 'LazyLanguages.helpers.dap'
+    local dap_helpers = require 'lazylangs.helpers.dap'
 
     dap.adapters.cpp = dap_helpers.codelldb_adapter_config
     dap.configurations.cpp = dap_helpers.simple_codelldb_launch_config 'cpp'

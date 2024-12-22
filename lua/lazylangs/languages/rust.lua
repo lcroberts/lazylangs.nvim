@@ -1,12 +1,12 @@
-local config = require 'LazyLanguages.config'
----@module "LazyLanguages"
+local config = require 'lazylangs.config'
+---@module "lazylangs"
 ---@type ll.Language
 return {
   plugins = {
     {
       'mrcjkb/rustaceanvim',
       version = '^5', -- Recommended
-      lazy = false, -- This plugin is already lazy
+      lazy = false,   -- This plugin is already lazy
       config = function()
         vim.g.rustaceanvim = {
           -- Plugin configuration
@@ -29,7 +29,7 @@ return {
       once = true,
       desc = 'Install rust-analyzer and rustfmt if they are not installed',
       callback = function()
-        local helpers = require 'LazyLanguages.helpers.vim'
+        local helpers = require 'lazylangs.helpers.vim'
         if not vim.fn.executable 'rustup' then
           helpers.notify_once("'rustup' is not executable. Please add it to your path.", vim.log.levels.WARN)
           return

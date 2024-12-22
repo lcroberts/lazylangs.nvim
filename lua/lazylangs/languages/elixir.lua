@@ -1,4 +1,4 @@
----@module "LazyLanguages"
+---@module "lazylangs"
 ---@type ll.Language
 return {
   plugins = {
@@ -7,7 +7,7 @@ return {
       version = '*',
       ft = { 'elixir', 'eelixir', 'heex', 'surface' },
       config = function()
-        local elixir = require 'elixir'
+        local elixir = require 'lazylangs.languages.elixir'
         local elixirls = require 'elixir.elixirls'
 
         elixir.setup {
@@ -17,14 +17,14 @@ return {
               dialyzerEnabled = true,
             },
             on_attach = function(client, bufnr)
-              require('LazyLanguages.config').lsp.on_attach(client, bufnr)
+              require('lazylangs.config').lsp.on_attach(client, bufnr)
             end,
           },
         }
       end,
       dependencies = {
         'nvim-lua/plenary.nvim',
-        'lcroberts/LazyLanguages.nvim',
+        'lcroberts/lazylangs.nvim',
       },
     },
   },
@@ -35,7 +35,7 @@ return {
     local dap = require 'dap'
     dap.adapters.mix_task = {
       type = 'executable',
-      command = require('LazyLanguages.helpers.paths').mason_bin_path 'elixir-ls-debugger',
+      command = require('lazylangs.helpers.paths').mason_bin_path 'elixir-ls-debugger',
       args = {},
     }
     dap.configurations.elixir = {

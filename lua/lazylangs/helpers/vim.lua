@@ -5,12 +5,12 @@ local M = {}
 M.notify = function(message, level)
   if type(message) == 'table' then
     message = table.concat(message, '\n')
-    message = 'LazyLanguages:\n' .. message
+    message = 'lazylangs:\n' .. message
   else
-    message = 'LazyLanguages: ' .. message
+    message = 'lazylangs: ' .. message
   end
   level = level or vim.log.levels.INFO
-  vim.notify(message, level, { title = 'LazyLanguages' })
+  vim.notify(message, level, { title = 'lazylangs' })
 end
 
 ---@param message string|string[]
@@ -18,12 +18,12 @@ end
 M.notify_once = function(message, level)
   if type(message) == 'table' then
     message = table.concat(message, '\n')
-    message = 'LazyLanguages:\n' .. message
+    message = 'lazylangs:\n' .. message
   else
-    message = 'LazyLanguages: ' .. message
+    message = 'lazylangs: ' .. message
   end
   level = level or vim.log.levels.INFO
-  vim.notify_once(message, level, { title = 'LazyLanguages' })
+  vim.notify_once(message, level, { title = 'lazylangs' })
 end
 
 return M

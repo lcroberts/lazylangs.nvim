@@ -1,4 +1,4 @@
-local config = require 'LazyLanguages.config'
+local config = require 'lazylangs.config'
 local M = {}
 M.setup = config.setup
 
