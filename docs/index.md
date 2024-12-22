@@ -1,0 +1,3 @@
+# lazylangs.nvim
+
+Test docs

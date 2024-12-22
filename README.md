@@ -35,7 +35,7 @@ configurations that I conflate to be the same in the provided language
 configurations. You can also add custom languages or different configurations
 for the same language if you wish.
 
-For more information on any individual language configs see [languages.md](https://github.com/lcroberts/lazylangs.nvim/blob/main/doc/languages.md).
+For more information on any individual language configs see [languages.md](https://github.com/lcroberts/lazylangs.nvim/blob/main/docs/languages.md).
 
 ### Compiled Languages
 

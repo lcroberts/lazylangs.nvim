@@ -1,3 +1,6 @@
+---
+outline: deep
+---
 # Language Configuration Details
 
 For more information on any of the language configurations you can go directly
