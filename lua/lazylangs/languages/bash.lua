@@ -11,7 +11,11 @@ return {
     'shellcheck',
   },
   formatters = {
-    conform = { 'shfmt' },
+    conform = {
+      bash = {
+        'shfmt'
+      },
+    }
   },
   linters = {
     nvim_lint = {

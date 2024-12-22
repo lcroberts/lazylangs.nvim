@@ -75,7 +75,6 @@ local function handle_lsp(lsp_table, config, lspconfig)
 end
 
 local function handle_nvim_lint(linter_table, lint)
-  --TODO: Enable implicit language linting
   for filetype, linters in pairs(linter_table) do
     if lint.linters_by_ft[filetype] == nil then
       lint.linters_by_ft[filetype] = linters
@@ -87,12 +86,16 @@ local function handle_nvim_lint(linter_table, lint)
   end
 end
 
-local function handle_conform(language, formatter_table, conform)
-  --TODO: Enable ability to define multiple language formatters per spec.
-  local language_formatters = conform.formatters_by_ft[language] or {}
-  ---@diagnostic disable-next-line: param-type-mismatch
-  language_formatters = vim.tbl_deep_extend('force', language_formatters, formatter_table or {})
-  conform.formatters_by_ft[language] = language_formatters
+local function handle_conform(formatter_table, conform)
+  for filetype, formatters in pairs(formatter_table) do
+    if conform.formatters_by_ft[filetype] == nil then
+      conform.formatters_by_ft[filetype] = formatters
+    else
+      local language_formatters = conform.formatters_by_ft[filetype] or {}
+      language_formatters = vim.tbl_deep_extend('force', language_formatters, formatter_table or {})
+      conform.formatters_by_ft[filetype] = language_formatters
+    end
+  end
 end
 
 M.language_setup = function()
@@ -112,7 +115,7 @@ M.language_setup = function()
   local format
   if formatting_plugin == 'conform' then
     local success
-    success, lint = pcall(require, 'conform')
+    success, format = pcall(require, 'conform')
     if not success then
       require('lazylangs.helpers.vim').notify_once('conform is not installed', vim.log.levels.ERROR)
     end
@@ -122,13 +125,15 @@ M.language_setup = function()
     local language_table = M.language_tables[language]
     if language_table.formatters ~= nil then
       if formatting_plugin == 'conform' then
-        handle_conform(language, language_table.formatters.conform, format)
+        handle_conform(language_table.formatters.conform or {}, format)
       end
     end
 
     handle_lsp(language_table.lsp, config, lspconfig)
-    if linting_plugin == 'nvim-lint' then
-      handle_nvim_lint(language_table.linters.nvim_lint, lint)
+    if language_table.linters ~= nil then
+      if linting_plugin == 'nvim-lint' then
+        handle_nvim_lint(language_table.linters.nvim_lint or {}, lint)
+      end
     end
 
     for _, package in ipairs(language_table.mason_packages or {}) do

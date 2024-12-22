@@ -29,6 +29,8 @@ return {
     'debugpy',
   },
   formatters = {
-    conform = { 'isort', 'black' },
+    conform = {
+      python = { 'isort', 'black' }
+    },
   },
 }

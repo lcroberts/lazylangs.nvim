@@ -67,7 +67,9 @@ return {
   },
   formatters = {
     conform = {
-      'stylua',
+      lua = {
+        'stylua',
+      },
     },
   },
   mason_packages = {

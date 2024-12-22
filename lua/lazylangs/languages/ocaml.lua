@@ -6,7 +6,12 @@ return {
     server_configuration = {},
   },
   formatters = {
-    conform = { 'ocamlformat', lsp_fallback = true },
+    conform = {
+      ocaml = {
+        'ocamlformat',
+        lsp_fallback = true
+      },
+    },
   },
   mason_packages = {
     'ocaml-lsp',

@@ -1,6 +1,6 @@
 ---@module "lazylangs"
 ---@type ll.Language
-return {
+local M = {
   plugins = {
     {
       'pmizio/typescript-tools.nvim',
@@ -28,9 +28,15 @@ return {
   },
   formatters = {
     conform = {
-      'prettierd',
-      'prettier',
-      stop_after_first = true,
+      javascript = {
+        'prettierd',
+        'prettier',
+        stop_after_first = true,
+      },
     },
   },
 }
+
+M.formatters.conform.typescript = M.formatters.conform.javascript
+
+return M
