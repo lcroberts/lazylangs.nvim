@@ -15,7 +15,8 @@
 
 Some of the configuration is required to be put into a global variable since
 some amount of state needs to be known at the time lazy.nvim loads the plugins
-which is done before the setup function of the plugin is called.
+which is done before the setup function of the plugin is called. So this global
+needs to be set up before the setup function of lazy.nvim is called.
 
 ```lua
 vim.g.lazylangs = {
@@ -26,7 +27,7 @@ vim.g.lazylangs = {
   override_path = 'languages',
   ---List of strings of language names/aliases. See Language Support.
   ---@type string[]
-  langs = { "lua", "markdown", "python" },
+  langs = { 'lua', 'markdown', 'python' },
   ---Optional completion engine plugin to be used
   ---@type "nvim-cmp"|"blink.cmp"
   completion_plugin = "nvim-cmp",
@@ -36,6 +37,9 @@ vim.g.lazylangs = {
   ---Optional linting plugin to be used
   ---@type "nvim-lint"
   linting_plugin = 'nvim-lint',
+  ---Optional debugging plugin to be used
+  ---@type "nvim-dap"
+  debugging_plugin = 'nvim-dap',
 }
 ```
 
