@@ -1,22 +1,19 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "lazylangs.nvim",
   description: "Documentation for lazylangs.nvim",
   lang: 'en-US',
   sitemap: { hostname: 'https://lazylangs.com' },
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
-
     sidebar: [
-      {
-        text: 'Getting Started',
-        items: [
-          { text: 'Introduction', link: '/' },
-          { text: 'Languages', link: '/languages' },
-        ]
-      }
+      { text: 'Introduction', link: '/' },
+      { text: 'Installation', link: '/installation' },
+      { text: 'Default Config', link: '/default_config' },
+      { text: 'Making Language Configs', link: '/making_a_lang_config' },
+      { text: 'Language Support', link: '/language_support' },
+      { text: 'Language Details', link: '/language_details' },
+      { text: 'Configuration Recipes', link: '/recipes' },
     ],
 
     socialLinks: [

@@ -1,31 +1,7 @@
----
-outline: deep
----
 # Language Configuration Details
 
 For more information on any of the language configurations you can go directly
 to the configuration file by clicking on the language name.
-
-## Table of Contents:
-
-- [Go](#Go)
-- [Java](#Java)
-- [C Sharp](#C-Sharp)
-- [F Sharp](#F-Sharp)
-- [Rust](#Rust)
-- [C/Cpp](#CCpp)
-- [Zig](#Zig)
-- [Odin](#Odin)
-- [Python](#Python)
-- [Bash](#Bash)
-- [Lua](#Lua)
-- [Javascript/Typescript](#JavascriptTypescript)
-- [Latex](#Latex)
-- [Markdown](#Markdown)
-- [HTML/CSS](#HTMLCSS)
-- [Scala](#Scala)
-- [Elixir](#Elixir)
-- [Ocaml](#Ocaml)
 
 ## [Go](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/go.lua)
 
