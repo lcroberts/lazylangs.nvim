@@ -4,7 +4,6 @@ For more information on any of the language configurations you can go directly
 to the configuration file by clicking on the language name.
 
 ## [Go](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/go.lua)
-
 - LSP: gopls
 - Formatter: LSP Builtin (gofmt)
 - Additional plugins:
@@ -13,7 +12,6 @@ to the configuration file by clicking on the language name.
 - Notes: Requires go to be installed.
 
 ## [Java](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/java.lua)
-
 - LSP: Jdtls
 - Formatter: LSP Builtin
 - Additional Plugins:
@@ -54,11 +52,39 @@ to the configuration file by clicking on the language name.
 - Formatter: LSP Builtin
 - Additional Plugins: None
 
+## [Scala](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/scala.lua)
+- LSP: metals (plugin configured)
+- Formatter: LSP Builtin
+- Additional Plugins:
+    - scalameta/nvim-metals - does most of the heavy lifting as far as debugging and lsp goes
+- Notes: Requires coursier to be installed
+
+## [Ocaml](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/ocaml.lua)
+- LSP: ocaml-lsp
+- Formatter: ocamlfmt
+- Additional Plugins: None
+- Notes: Requires opam to be installed
+
+## [Elixir](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/elixir.lua)
+- LSP: elixir-ls
+- Formatter: LSP Builtin
+- Additional Plugins: None
+- Notes: Requires elixir and often times erlang to be installed. There are
+debugging profiles set up according to the documentation however I have been
+unable to verify they work.
+
 ## [Python](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/python.lua)
 - LSP: Based Pyright
 - Formatter: isort and black
 - Additional Plugins:
     - mfussenegger/nvim-dap-python
+
+## [Ruby](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/ruby.lua)
+- LSP: solargraph
+- Formatter: LSP Builtin
+- Additional Plugins:
+  - suketa/nvim-dap-ruby: Sets up debugging
+
 
 ## [Bash](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/bash.lua)
 - LSP: Bashls
@@ -93,24 +119,3 @@ to the configuration file by clicking on the language name.
 - LSP: Emmetls, Htmlls, Cssls
 - Formatter: LSP Builtin
 - Additional Plugins: None
-
-## [Scala](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/scala.lua)
-- LSP: metals (plugin configured)
-- Formatter: LSP Builtin
-- Additional Plugins:
-    - scalameta/nvim-metals - does most of the heavy lifting as far as debugging and lsp goes
-- Notes: Requires coursier to be installed
-
-## [Elixir](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/elixir.lua)
-- LSP: elixir-ls
-- Formatter: LSP Builtin
-- Additional Plugins: None
-- Notes: Requires elixir and often times erlang to be installed. There are
-debugging profiles set up according to the documentation however I have been
-unable to verify they work.
-
-## [Ocaml](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/ocaml.lua)
-- LSP: ocaml-lsp
-- Formatter: ocamlfmt
-- Additional Plugins: None
-- Notes: Requires opam to be installed
