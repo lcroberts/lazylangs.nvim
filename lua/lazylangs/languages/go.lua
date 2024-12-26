@@ -10,7 +10,7 @@ return {
         'nvim-treesitter/nvim-treesitter',
       },
       config = function()
-        require('lazylangs.languages.go').setup()
+        require('go').setup()
       end,
       event = { 'CmdlineEnter' },
       ft = { 'go', 'gomod', 'gowork', 'gotmpl' },

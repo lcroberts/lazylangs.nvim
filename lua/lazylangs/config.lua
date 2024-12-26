@@ -73,17 +73,16 @@ M.setup = function(opts)
     end,
   })
 
+  -- TODO: Fix issues with command
   vim.api.nvim_create_user_command('LLCreateOverride', function(options)
     if type(vim.g.lazylangs.override_path) ~= 'string' then
-      vim_helpers.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config",
-        vim.log.levels.ERROR)
+      vim_helpers.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config", vim.log.levels.ERROR)
       return
     end
     local language = string.lower(options.args)
     local success, _ = pcall(require, 'lazylangs.languages.' .. language)
     if not success then
-      vim_helpers.notify(string.format("'%s' is not a language supported by lazylangs", language),
-        vim.log.levels.WARN)
+      vim_helpers.notify(string.format("'%s' is not a language supported by lazylangs", language), vim.log.levels.WARN)
       return
     end
     local plugin_path = nil
@@ -98,8 +97,7 @@ M.setup = function(opts)
       return
     end
 
-    local file_path = plugin_path ..
-        ('/lazylangs/languages/'):gsub('/', path_helpers.path_separator) .. language .. '.lua'
+    local file_path = plugin_path .. ('/lazylangs/languages/'):gsub('/', path_helpers.path_separator) .. language .. '.lua'
     local file_handle = io.open(file_path, 'r')
     if file_handle == nil then
       vim_helpers.notify(string.format("There was an error opening the file for '%s'", language), vim.log.levels.ERROR)
@@ -109,15 +107,14 @@ M.setup = function(opts)
     file_handle:close()
 
     local override_path = vim.fn.stdpath 'config'
-        .. path_helpers.path_separator
-        .. 'lua'
-        .. path_helpers.path_separator
-        .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
+      .. path_helpers.path_separator
+      .. 'lua'
+      .. path_helpers.path_separator
+      .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
 
     if not vim.uv.fs_stat(override_path) then
       if not vim.fn.mkdir(override_path, 'p') then
-        vim_helpers.notify(string.format("There was an error creating directory '%s'", override_path),
-          vim.log.levels.ERROR)
+        vim_helpers.notify(string.format("There was an error creating directory '%s'", override_path), vim.log.levels.ERROR)
         return
       end
     end
@@ -130,8 +127,7 @@ M.setup = function(opts)
     end
     local dump_file = io.open(dump_file_path, 'w')
     if dump_file == nil then
-      vim_helpers.notify(string.format("There was an error opening '%s' to write out the config", dump_file_path),
-        vim.log.levels.ERROR)
+      vim_helpers.notify(string.format("There was an error opening '%s' to write out the config", dump_file_path), vim.log.levels.ERROR)
       return
     end
     dump_file:write(file_content)

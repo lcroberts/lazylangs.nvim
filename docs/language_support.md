@@ -1,5 +1,7 @@
 # Language Support
 
+During some updates language configurations may change, so if you have a language you use extensively it is recommended to [dump the config](./making_a_lang_config#dumping-an-included-language-config) and either extend it or just have it frozen.
+
 ## Compiled Languages
 
 | Language Name | LSP | DAP Support | Language Aliases|
