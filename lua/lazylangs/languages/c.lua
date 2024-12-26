@@ -21,13 +21,16 @@ return {
     'codelldb',
   },
   setup = function()
-    local dap = require 'dap'
-    local dap_helpers = require 'lazylangs.helpers.dap'
+    local debugging_plugin = vim.g.lazylangs.debugging_plugin or nil
+    if debugging_plugin == 'nvim-dap' then
+      local dap = require 'dap'
+      local dap_helpers = require 'lazylangs.helpers.dap'
 
-    dap.adapters.cpp = dap_helpers.codelldb_adapter_config
-    dap.configurations.cpp = dap_helpers.simple_codelldb_launch_config 'cpp'
+      dap.adapters.cpp = dap_helpers.codelldb_adapter_config
+      dap.configurations.cpp = dap_helpers.simple_codelldb_launch_config 'cpp'
 
-    dap.adapters.c = dap_helpers.codelldb_adapter_config
-    dap.configurations.c = dap_helpers.simple_codelldb_launch_config 'c'
+      dap.adapters.c = dap_helpers.codelldb_adapter_config
+      dap.configurations.c = dap_helpers.simple_codelldb_launch_config 'c'
+    end
   end,
 }

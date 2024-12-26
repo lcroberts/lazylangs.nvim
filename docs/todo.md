@@ -14,7 +14,8 @@ is a certain plugin you'd like integrations with as well.
 These are things I am thinking about working on and have no timelines in mind for any of them. If anyone is interested in opening a PR feel free to do so.
 :::
 
-- Check behavior if nvim-dap is not installed
+- Add tests
+- Improve helpers interface
 - Support [none-ls](https://github.com/nvimtools/none-ls.nvim) for formatting and linting.
 - Remove the plugins dependency on [lazy.nvim](https://github.com/folke/lazy.nvim).
 - Add a builtin language config for the following languges:

@@ -30,33 +30,36 @@ return {
     },
   },
   setup = function()
-    local dap = require 'dap'
+    local debugging_plugin = vim.g.lazylangs.debugging_plugin or nil
+    if debugging_plugin == 'nvim-dap' then
+      local dap = require 'dap'
 
-    dap.configurations.scala = {
-      {
-        type = 'scala',
-        request = 'launch',
-        name = 'Run or Test Target',
-        metals = {
-          runType = 'runOrTestFile',
+      dap.configurations.scala = {
+        {
+          type = 'scala',
+          request = 'launch',
+          name = 'Run or Test Target',
+          metals = {
+            runType = 'runOrTestFile',
+          },
         },
-      },
-      {
-        type = 'scala',
-        request = 'launch',
-        name = 'Test Target',
-        metals = {
-          runType = 'testTarget',
+        {
+          type = 'scala',
+          request = 'launch',
+          name = 'Test Target',
+          metals = {
+            runType = 'testTarget',
+          },
         },
-      },
-      {
-        type = 'scala',
-        request = 'attach',
-        name = 'Attach to Localhost',
-        hostName = 'localhost',
-        port = 5005,
-        buildTarget = 'root',
-      },
-    }
+        {
+          type = 'scala',
+          request = 'attach',
+          name = 'Attach to Localhost',
+          hostName = 'localhost',
+          port = 5005,
+          buildTarget = 'root',
+        },
+      }
+    end
   end,
 }
