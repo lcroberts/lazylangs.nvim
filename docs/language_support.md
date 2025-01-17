@@ -24,6 +24,7 @@ During some updates language configurations may change, so if you have a languag
 | ------------- | :--------------: | :--------------: | --------------|
 | Python | ✅ | ✅ | python/py |
 | Ruby | ✅ | ✅ | ruby/rb |
+| PHP | ✅ | ✅ | php |
 | Bash | ✅ | ❌ | bash/sh |
 | Lua | ✅ | ❌ | lua |
 | Javascript/Typescript | ✅ | ❌ | javascript/typescript/js/ts |

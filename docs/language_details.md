@@ -85,6 +85,12 @@ unable to verify they work.
 - Additional Plugins:
   - suketa/nvim-dap-ruby: Sets up debugging
 
+## [PHP](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/php.lua)
+- LSP: intelephense
+- Formatter: Pint
+- Linter: php-stan
+- Additional Plugins: None
+- Notes: For debugging to work make sure you have xdebug properly set up.
 
 ## [Bash](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/bash.lua)
 - LSP: Bashls
