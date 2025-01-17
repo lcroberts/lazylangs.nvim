@@ -34,4 +34,6 @@ During some updates language configurations may change, so if you have a languag
 | ------------- | :--------------: | --------------|
 | Latex | ✅ | latex/tex |
 | Markdown | ✅ | markdown/md |
-| HTML/CSS |  ✅  | html/css |
+| HTML |  ✅  | html |
+| CSS |  ✅  | css |
+| Tailwind CSS |  ✅  | tailwind |

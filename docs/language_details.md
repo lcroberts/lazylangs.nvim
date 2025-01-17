@@ -115,7 +115,17 @@ unable to verify they work.
 - Additional Plugins:
     - MeanderingProgrammer/render-markdown.nvim
 
-## [HTML/CSS](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/html.lua)
-- LSP: Emmetls, Htmlls, Cssls
+## [HTML](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/html.lua)
+- LSP: Emmetls, Htmlls
+- Formatter: LSP Builtin
+- Additional Plugins: None
+
+## [CSS](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/css.lua)
+- LSP: Cssls
+- Formatter: LSP Builtin
+- Additional Plugins: None
+
+## [Tailwind](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/tailwind.lua)
+- LSP: Cssls, Tailwind language server
 - Formatter: LSP Builtin
 - Additional Plugins: None

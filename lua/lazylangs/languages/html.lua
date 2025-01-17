@@ -10,14 +10,9 @@ return {
       name = 'html',
       server_configuration = {},
     },
-    {
-      name = 'cssls',
-      server_configuration = {},
-    },
   },
   mason_packages = {
     'emmet-ls',
     'html-lsp',
-    'css-lsp',
   },
 }
