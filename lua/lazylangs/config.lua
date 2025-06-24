@@ -73,7 +73,6 @@ M.setup = function(opts)
     end,
   })
 
-  -- TODO: Fix issues with command
   vim.api.nvim_create_user_command('LLCreateOverride', function(options)
     if type(vim.g.lazylangs.override_path) ~= 'string' then
       vim_helpers.notify("'vim.g.lazylangs.override_path' must be declared in order to dump the existing config", vim.log.levels.ERROR)
@@ -97,7 +96,7 @@ M.setup = function(opts)
       return
     end
 
-    local file_path = plugin_path .. ('/lazylangs/languages/'):gsub('/', path_helpers.path_separator) .. language .. '.lua'
+    local file_path = plugin_path .. ('/lua/lazylangs/languages/'):gsub('/', path_helpers.path_separator) .. language .. '.lua'
     local file_handle = io.open(file_path, 'r')
     if file_handle == nil then
       vim_helpers.notify(string.format("There was an error opening the file for '%s'", language), vim.log.levels.ERROR)
@@ -148,7 +147,7 @@ M.setup = function(opts)
       end
 
       local language_list = {}
-      local language_dir = plugin_path .. ('/lazylangs/languages'):gsub('/', path_helpers.path_separator)
+      local language_dir = plugin_path .. ('/lua/lazylangs/languages'):gsub('/', path_helpers.path_separator)
       for name, _ in vim.fs.dir(language_dir, opts) do
         local wordstart, wordend = string.find(name, '%w+%.')
         if wordstart == nil then
