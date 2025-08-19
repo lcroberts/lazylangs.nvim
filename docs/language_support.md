@@ -4,6 +4,7 @@ During some updates language configurations may change, so if you have a languag
 
 ## Compiled Languages
 
+
 | Language Name | LSP | DAP Support | Language Aliases|
 | ------------- | :--------------: | :--------------: | --------------|
 | Go | ✅ | ✅ | go |
@@ -18,7 +19,9 @@ During some updates language configurations may change, so if you have a languag
 | Ocaml | ✅ | ✅ | ocaml/ml |
 | Elixir | ✅ | ✅ | elixir/ex/exs |
 
+
 ## Interpreted Languages
+
 
 | Language Name | LSP | DAP Support | Language Aliases|
 | ------------- | :--------------: | :--------------: | --------------|
@@ -29,7 +32,9 @@ During some updates language configurations may change, so if you have a languag
 | Lua | ✅ | ❌ | lua |
 | Javascript/Typescript | ✅ | ❌ | javascript/typescript/js/ts |
 
+
 ## Markup Languages
+
 
 | Language Name | LSP |Language Aliases|
 | ------------- | :--------------: | --------------|
@@ -37,4 +42,13 @@ During some updates language configurations may change, so if you have a languag
 | Markdown | ✅ | markdown/md |
 | HTML |  ✅  | html |
 | CSS |  ✅  | css |
+
+
+## Frameworks
+
+
+| Language Name | LSP |Language Aliases|
+| ------------- | :--------------: | --------------|
 | Tailwind CSS |  ✅  | tailwind |
+| Astro JS |  ✅  | astro |
+| Svelte |  ✅  | svelte |
