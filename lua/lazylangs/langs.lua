@@ -6,10 +6,10 @@ local M = {}
 local expanded_override_path = nil
 if type(vim.g.lazylangs.override_path) == 'string' then
   expanded_override_path = vim.fn.stdpath 'config'
-      .. path_helpers.path_separator
-      .. 'lua'
-      .. path_helpers.path_separator
-      .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
+    .. path_helpers.path_separator
+    .. 'lua'
+    .. path_helpers.path_separator
+    .. vim.g.lazylangs.override_path:gsub('%.', path_helpers.path_separator)
 end
 
 M.language_tables = {}
@@ -51,7 +51,7 @@ local function package_install(package)
   package:install { force = true }
 end
 
-local function handle_lsp(lsp_table, config, lspconfig)
+local function handle_lsp(lsp_table, config)
   -- Take lsp configuration and merge it with the capabilities generated in the file.
   if lsp_table ~= nil then
     if lsp_table.name == nil then
@@ -61,7 +61,8 @@ local function handle_lsp(lsp_table, config, lspconfig)
           on_attach = config.lsp.on_attach,
           flags = config.lsp.flags,
         }, lsp.server_configuration or {})
-        lspconfig[lsp.name].setup(lsp_config)
+        vim.lsp.enable(lsp.name)
+        vim.lsp.config(lsp.name, lsp_config)
       end
     else
       local lsp_config = vim.tbl_deep_extend('force', {}, {
@@ -69,7 +70,8 @@ local function handle_lsp(lsp_table, config, lspconfig)
         on_attach = config.lsp.on_attach,
         flags = config.lsp.flags,
       }, lsp_table.server_configuration or {})
-      lspconfig[lsp_table.name].setup(lsp_config)
+      vim.lsp.enable(lsp_table.name)
+      vim.lsp.config(lsp_table.name, lsp_config)
     end
   end
 end
@@ -100,7 +102,6 @@ end
 
 M.language_setup = function()
   local config = require 'lazylangs.config'
-  local lspconfig = require 'lspconfig'
   local mason_packages = {}
   local linting_plugin = vim.g.lazylangs.linting_plugin or nil
   local lint
@@ -129,7 +130,7 @@ M.language_setup = function()
       end
     end
 
-    handle_lsp(language_table.lsp, config, lspconfig)
+    handle_lsp(language_table.lsp, config)
     if language_table.linters ~= nil then
       if linting_plugin == 'nvim-lint' then
         handle_nvim_lint(language_table.linters.nvim_lint or {}, lint)
