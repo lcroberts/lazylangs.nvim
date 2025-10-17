@@ -3,7 +3,7 @@
 return {
   plugins = {},
   lsp = {
-    name = 'kotlin-language-server',
+    name = 'kotlin_language_server',
     server_configuration = {},
   },
   mason_packages = {
