@@ -18,6 +18,7 @@ During some updates language configurations may change, so if you have a languag
 | Scala | ✅ | ✅ | scala |
 | Ocaml | ✅ | ✅ | ocaml/ml |
 | Elixir | ✅ | ✅ | elixir/ex/exs |
+| Kotlin | ✅ | ❌ | kotlin/kt |
 
 
 ## Interpreted Languages
