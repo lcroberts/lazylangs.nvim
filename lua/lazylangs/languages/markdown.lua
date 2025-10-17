@@ -4,7 +4,7 @@ return {
   plugins = {
     {
       'MeanderingProgrammer/render-markdown.nvim',
-      ft = 'markdown',
+      ft = { 'markdown', 'markdown.mdx', 'mdx' },
       dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
       ---@module 'render-markdown'
       ---@type render.md.UserConfig
@@ -16,7 +16,9 @@ return {
   },
   lsp = {
     name = 'marksman',
-    server_configuration = {},
+    server_configuration = {
+      filetypes = { 'markdown', 'markdown.mdx', 'mdx' },
+    },
   },
   mason_packages = {
     'marksman',
