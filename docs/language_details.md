@@ -73,6 +73,12 @@ to the configuration file by clicking on the language name.
 debugging profiles set up according to the documentation however I have been
 unable to verify they work.
 
+## [Kotlin](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/kotlin.lua)
+- LSP: kotlin-lsp
+- Formatter: None
+- Additional Plugins: None
+- Notes: The LSP is in pre-alpha and is a bit inconsistent
+
 ## [Python](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/python.lua)
 - LSP: Based Pyright
 - Formatter: isort and black

@@ -2,6 +2,10 @@
 
 During some updates language configurations may change, so if you have a language you use extensively it is recommended to [dump the config](./making_a_lang_config#dumping-an-included-language-config) and either extend it or just have it frozen.
 
+- ✅: Everything works
+- ⚠️: There are some issues
+- ❌: Does not work at all
+
 ## Compiled Languages
 
 
@@ -17,8 +21,8 @@ During some updates language configurations may change, so if you have a languag
 | Odin | ✅ | ✅ | odin |
 | Scala | ✅ | ✅ | scala |
 | Ocaml | ✅ | ✅ | ocaml/ml |
-| Elixir | ✅ | ✅ | elixir/ex/exs |
-| Kotlin | ✅ | ❌ | kotlin/kt |
+| Elixir | ✅ | ⚠️ | elixir/ex/exs |
+| Kotlin | ⚠️ | ❌ | kotlin/kt |
 
 
 ## Interpreted Languages
