@@ -4,7 +4,7 @@ local M = {
   plugins = {
     {
       'pmizio/typescript-tools.nvim',
-      ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+      ft = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx', 'svelte' },
       dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
       opts = {
         settings = {
