@@ -167,11 +167,11 @@ unable to verify they work.
 
 ## [GLSL](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/glsl.lua)
 
-- LSP: [GLSL analyzer](https://github.com/nolanderc/glsl_analyzer)
+- LSP: GLSL analyzer
 - Formatter: LSP Builtin
 - Additional Plugins: None
 
-## [WGSL](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/glsl.lua)
+## [WGSL](https://github.com/lcroberts/lazylangs.nvim/blob/main/lua/lazylangs/languages/wgsl.lua)
 
 - LSP: WGSL analyzer
 - Formatter: LSP Builtin
