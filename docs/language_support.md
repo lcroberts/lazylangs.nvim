@@ -57,3 +57,12 @@ During some updates language configurations may change, so if you have a languag
 | Tailwind CSS |  ✅  | tailwind |
 | Astro JS |  ✅  | astro |
 | Svelte |  ✅  | svelte |
+
+
+## Shader Languages
+
+
+| Language Name | LSP |Language Aliases|
+| ------------- | :--------------: | --------------|
+| WGSL |  ✅  | wgsl |
+| GLSL |  ✅  | glsl |
