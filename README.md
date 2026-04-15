@@ -1,5 +1,10 @@
 # lazylangs.nvim
 
+> [!WARNING] 
+> Development for v2 is currently ongoing. This will include a
+> migration to the built-in neovim package manager introduced in v0.12 and will
+> probably include other breaking changes.
+
 lazylangs.nvim is a tool made to simplify setting up tools for programming
 languages by centralizing all tooling configuration into one place. It
 integrates with existing plugins and uses their configuration methods whenever
