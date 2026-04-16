@@ -9,10 +9,6 @@ Below are the default configuration options for the plugin.
     ---Are mason packages for languages automatically installed
     ---@type boolean
     automatic_install = false,
-
-    ---Are mason packages for languages automatically updated
-    ---@type boolean
-    automatic_update = false,
   },
 
   lsp = {
