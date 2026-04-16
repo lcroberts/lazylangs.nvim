@@ -30,7 +30,7 @@ return {
     'netcoredbg',
   },
   setup = function()
-    local debugging_plugin = vim.g.lazylang.debugging_plugin or nil
+    local debugging_plugin = vim.g.lazylangs.debugging_plugin or nil
     if debugging_plugin == 'nvim-dap' then
       local dap = require 'dap'
       dap.adapters.csharp = {
