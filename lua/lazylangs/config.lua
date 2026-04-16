@@ -80,17 +80,8 @@ M.setup = function(opts)
       vim_helpers.notify(string.format("'%s' is not a language supported by lazylangs", language), vim.log.levels.WARN)
       return
     end
-    local plugin_path = nil
-    for _, plugin in ipairs(require('lazy').plugins()) do
-      if plugin.name == 'lazylangs.nvim' then
-        plugin_path = plugin.dir
-      end
-    end
 
-    if plugin_path == nil then
-      vim_helpers.notify('Could not find the plugin directory for lazylangs.nvim', vim.log.levels.ERROR)
-      return
-    end
+    local plugin_path = require('lazylangs.helpers.paths').lazylangs_path
 
     local file_path = plugin_path .. ('/lua/lazylangs/languages/'):gsub('/', path_helpers.path_separator) .. language .. '.lua'
     local file_handle = io.open(file_path, 'r')
@@ -130,17 +121,7 @@ M.setup = function(opts)
   end, {
     nargs = 1,
     complete = function(argLead, _, _)
-      local plugin_path = nil
-      for _, plugin in ipairs(require('lazy').plugins()) do
-        if plugin.name == 'lazylangs.nvim' then
-          plugin_path = plugin.dir
-        end
-      end
-
-      if plugin_path == nil then
-        vim_helpers.notify('Could not find the plugin directory for lazylangs.nvim', vim.log.levels.ERROR)
-        return
-      end
+      local plugin_path = require('lazylangs.helpers.paths').lazylangs_path
 
       local language_list = {}
       local language_dir = plugin_path .. ('/lua/lazylangs/languages'):gsub('/', path_helpers.path_separator)
