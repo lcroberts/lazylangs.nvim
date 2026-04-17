@@ -59,10 +59,6 @@ M.setup = function(opts)
     group = vim.api.nvim_create_augroup('LLMasonInstall', { clear = true }),
     once = true,
     callback = function()
-      if config.mason.automatic_update then
-        vim.cmd 'LLMasonUpdate'
-      end
-
       if config.mason.automatic_install then
         vim.cmd 'LLMasonInstall'
       end
