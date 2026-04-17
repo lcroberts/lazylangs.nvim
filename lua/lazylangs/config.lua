@@ -77,7 +77,7 @@ M.setup = function(opts)
       return
     end
 
-    local plugin_path = require('lazylangs.helpers.paths').lazylangs_path
+    local plugin_path = path_helpers.lazylangs_path
 
     local file_path = plugin_path .. ('/lua/lazylangs/languages/'):gsub('/', path_helpers.path_separator) .. language .. '.lua'
     local file_handle = io.open(file_path, 'r')
@@ -117,7 +117,7 @@ M.setup = function(opts)
   end, {
     nargs = 1,
     complete = function(argLead, _, _)
-      local plugin_path = require('lazylangs.helpers.paths').lazylangs_path
+      local plugin_path = path_helpers.lazylangs_path
 
       local language_list = {}
       local language_dir = plugin_path .. ('/lua/lazylangs/languages'):gsub('/', path_helpers.path_separator)

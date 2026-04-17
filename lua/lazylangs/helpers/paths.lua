@@ -41,7 +41,7 @@ M.mason_package_path = function(package_name)
   return vim.fn.stdpath 'data' .. ('/mason/package/'):gsub('/', M.path_separator) .. package_name .. M.path_separator
 end
 
-local filepath = debug.getinfo(1).source
+local filepath = debug.getinfo(1).source:gsub('^@', '')
 local pathparts = vim.split(filepath, M.path_separator)
 pathparts = vim.list_slice(pathparts, nil, #pathparts - 4)
 
