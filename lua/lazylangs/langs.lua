@@ -51,6 +51,20 @@ local function package_install(package)
   package:install { force = true }
 end
 
+---@param package Package
+local function package_uninstall(package)
+  show(string.format("Uninstalling Mason package '%s'", package.name))
+  package:once('uninstall:success', function()
+    show(string.format("Mason package '%s' has been successfully uninstalled", package.name))
+  end)
+  package:once('uninstall:failed', function()
+    vim.schedule_wrap(function()
+      vim_helpers.notify(string.format("Mason package '%s' has failed to uninstall", package.name), vim.log.levels.ERROR)
+    end)
+  end)
+  package:uninstall { force = true }
+end
+
 local function handle_lsp(lsp_table, config)
   -- Take lsp configuration and merge it with the capabilities generated in the file.
   if lsp_table ~= nil then
@@ -155,8 +169,7 @@ M.language_setup = function()
         vim_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
       else
         local package = mason_registry.get_package(package_name)
-        --TODO: Fix this conditional
-        if not package:is_installed() then
+        if not package:is_installed() and not package:is_installing() then
           package_install(package)
         end
       end
@@ -164,7 +177,19 @@ M.language_setup = function()
   end, {})
 
   vim.api.nvim_create_user_command('LLMasonClean', function()
-    vim.cmd('MasonUninstall ' .. table.concat(mason_packages, ' '))
+    local mason_registry = require 'mason-registry'
+    mason_registry.refresh()
+    for _, package_name in ipairs(mason_packages) do
+      local package_list = mason_registry.get_all_package_names()
+      if not vim.tbl_contains(package_list, package_name) then
+        vim_helpers.notify(string.format("'%s' is not a valid mason package.", package_name), vim.log.levels.WARN)
+      else
+        local package = mason_registry.get_package(package_name)
+        if package:is_installed() and not package:is_uninstalling() then
+          package_uninstall(package)
+        end
+      end
+    end
   end, {})
 end
 
