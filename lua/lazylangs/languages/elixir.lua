@@ -1,33 +1,24 @@
 ---@module "lazylangs"
+vim.pack.add { 'https://github.com/elixir-tools/elixir-tools.nvim' }
+require('lazylangs.helpers.lazy').by_ft({ 'elixir', 'eelixir', 'heex', 'surface' }, function()
+  local elixir = require 'lazylangs.languages.elixir'
+  local elixirls = require 'elixir.elixirls'
+
+  elixir.setup {
+    elixirls = {
+      enable = true,
+      settings = elixirls.settings {
+        dialyzerEnabled = true,
+      },
+      on_attach = function(client, bufnr)
+        require('lazylangs.config').lsp.on_attach(client, bufnr)
+      end,
+    },
+  }
+end)
+
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'elixir-tools/elixir-tools.nvim',
-      version = '*',
-      ft = { 'elixir', 'eelixir', 'heex', 'surface' },
-      config = function()
-        local elixir = require 'lazylangs.languages.elixir'
-        local elixirls = require 'elixir.elixirls'
-
-        elixir.setup {
-          elixirls = {
-            enable = true,
-            settings = elixirls.settings {
-              dialyzerEnabled = true,
-            },
-            on_attach = function(client, bufnr)
-              require('lazylangs.config').lsp.on_attach(client, bufnr)
-            end,
-          },
-        }
-      end,
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-        'lcroberts/lazylangs.nvim',
-      },
-    },
-  },
   mason_packages = {
     'elixir-ls',
   },
