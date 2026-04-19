@@ -10,7 +10,6 @@
 ---@field server_configuration ll.ServerConfiguration Language server configuration options.
 
 ---@class ll.Language The language configuration table structure
----@field plugins table? A lazy plugin spec. It is loaded by lazy and processed as any other would be.
 ---@field lsp ll.LSP|ll.LSP[]? A LSP table or a list of them.
 ---@field mason_packages string[]? A list of mason packages to be included in operations performed by LLMasonInstall, and LLMasonClean
 ---@field formatters table? A list of plugin names. For each plugin name there should be a list of language names that map to a formatter spec for the plugin.
