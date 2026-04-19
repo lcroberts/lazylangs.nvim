@@ -1,23 +1,20 @@
 ---@module "lazylangs"
+local filetypes = { 'markdown', 'markdown.mdx', 'mdx' }
+vim.pack.add { 'https://github.com/MeanderingProgrammer/render-markdown.nvim' }
+
+require('lazylangs.helpers.lazy').by_ft(filetypes, function()
+  require('render-markdown').setup {
+    enabled = true,
+    preset = 'obsidian',
+  }
+end)
+
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'MeanderingProgrammer/render-markdown.nvim',
-      ft = { 'markdown', 'markdown.mdx', 'mdx' },
-      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-      ---@module 'render-markdown'
-      ---@type render.md.UserConfig
-      opts = {
-        enabled = true,
-        preset = 'obsidian',
-      },
-    },
-  },
   lsp = {
     name = 'marksman',
     server_configuration = {
-      filetypes = { 'markdown', 'markdown.mdx', 'mdx' },
+      filetypes = filetypes,
     },
   },
   mason_packages = {
