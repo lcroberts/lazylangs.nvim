@@ -1,25 +1,16 @@
-local config = require 'lazylangs.config'
 ---@module "lazylangs"
+vim.pack.add { 'https://github.com/mrcjkb/rustaceanvim' }
+local config = require 'lazylangs.config'
+vim.g.rustaceanvim = {
+  tools = {},
+  server = {
+    on_attach = config.lsp.on_attach,
+    capabilities = config.lsp.capabilities,
+  },
+}
+
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'mrcjkb/rustaceanvim',
-      version = '^6', -- Recommended
-      lazy = false, -- This plugin is already lazy
-      config = function()
-        vim.g.rustaceanvim = {
-          -- Plugin configuration
-          tools = {},
-          -- LSP configuration
-          server = {
-            on_attach = config.lsp.on_attach, -- Config should be loaded by the time this is ran
-            capabilities = config.lsp.capabilities,
-          },
-        }
-      end,
-    },
-  },
   mason_packages = {
     'codelldb',
   },
