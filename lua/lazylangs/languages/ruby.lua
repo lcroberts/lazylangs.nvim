@@ -1,13 +1,12 @@
 ---@module "lazylangs"
+vim.pack.add { 'https://github.com/suketa/nvim-dap-ruby' }
+
+require('lazylangs.helpers.lazy').by_ft({ 'ruby' }, function()
+  require('dap-ruby').setup()
+end)
+
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'suketa/nvim-dap-ruby',
-      dependencies = { 'mfussenegger/nvim-dap' },
-      opts = {},
-    },
-  },
   lsp = {
     name = 'solargraph',
     server_configuration = {},
