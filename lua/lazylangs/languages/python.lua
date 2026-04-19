@@ -1,16 +1,13 @@
-local path_helpers = require 'lazylangs.helpers.paths'
 ---@module "lazylangs"
+local path_helpers = require 'lazylangs.helpers.paths'
+vim.pack.add { 'https://github.com/mfussenegger/nvim-dap-python' }
+
+require('lazylangs.helpers.lazy').by_ft({ 'python' }, function()
+  require('dap-python').setup(path_helpers.mason_package_path 'debugpy' .. ('/venv/bin/python'):gsub('/', path_helpers.path_separator))
+end)
+
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'mfussenegger/nvim-dap-python',
-      config = function()
-        require('dap-python').setup(path_helpers.mason_package_path 'debugpy' ..
-          ('/venv/bin/python'):gsub('/', path_helpers.path_separator))
-      end,
-    },
-  },
   lsp = {
     name = 'basedpyright',
     server_configuration = {
@@ -30,7 +27,7 @@ return {
   },
   formatters = {
     conform = {
-      python = { 'isort', 'black' }
+      python = { 'isort', 'black' },
     },
   },
 }
