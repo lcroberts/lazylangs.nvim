@@ -17,7 +17,6 @@ These are things I am thinking about working on and have no timelines in mind fo
 - Add tests
 - Improve helpers interface
 - Support [none-ls](https://github.com/nvimtools/none-ls.nvim) for formatting and linting.
-- Remove the plugins dependency on [lazy.nvim](https://github.com/folke/lazy.nvim).
 - Add a builtin language config for the following languges:
   - Gleam
   - Haskell

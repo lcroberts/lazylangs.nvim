@@ -1,7 +1,6 @@
 ---@module "lazylangs"
 ---@type ll.Language
 return {
-  plugins = {},
   lsp = {
     name = 'zls',
     server_configuration = {},

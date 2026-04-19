@@ -3,7 +3,6 @@
 ## Language Table Structure
 
 Every field in a language table is optional. Meaning you can leave out any that you wish to. The fields are as follows:
-- plugins: A lazy plugin spec to be included when the language is enabled.
 - lsp: Consists of a name as defined by [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) and a server configuration table. It may also be a list of the aforementioned layout if you wish to have multiple language servers enabled. For more information on the server configuration table see the types section.
 - mason_packages: A list of strings. These should be [mason.nvim](https://github.com/williamboman/mason.nvim) package names.
 - formatters and linters: While these are two separate fields they follow the same structure. The first layer of the table has keys that are plugin names (any .nvim suffix is removed and "-" are replaced with "_"). The next layer is a list of file types. These should map to a valid plugin specific spec of formatters or linters. So for example `formatters.conform.lua` should map to a conform compatible formatter spec that is applied to lua files.
@@ -26,7 +25,6 @@ To see example set up you can go to the [language details](./language_details) p
 ---@field server_configuration ll.ServerConfiguration Language server configuration options.
 
 ---@class ll.Language The language configuration table structure
----@field plugins table? A lazy plugin spec. It is loaded by lazy and processed as any other would be.
 ---@field lsp ll.LSP|ll.LSP[]? A LSP table or a list of them.
 ---@field mason_packages string[]? A list of mason packages to be included in operations performed by LLMasonInstall, and LLMasonClean
 ---@field formatters table? A list of plugin names. For each plugin name there should be a list of language names that map to a formatter spec for the plugin.
@@ -66,12 +64,6 @@ the top level fields can be left out if you do not need them.
 ---@module "lazylangs"
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'monkey/monkey.nvim'
-      opts = {},
-    },
-  },
   lsp = {
     name = "monkeyls",
     -- server_configuration is normally just an empty table. There are few times where anything inside is required

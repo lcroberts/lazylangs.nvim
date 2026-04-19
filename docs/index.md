@@ -13,7 +13,6 @@ it to tailor it to your tastes.
 
 ## Features
 
-- Plugin support through [lazy.nvim](https://github.com/folke/lazy.nvim).
 - LSP support through [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
 - Formatting support through [conform.nvim](https://github.com/stevearc/conform.nvim) (though more plugin support is planned).
 - Linting support through [nvim-lint](https://github.com/mfussenegger/nvim-lint) (though more plugin support is planned).
