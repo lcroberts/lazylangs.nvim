@@ -1,34 +1,22 @@
 ---@module "lazylangs"
+vim.pack.add { 'https://github.com/scalameta/nvim-metals' }
+
+local metals_config = require('metals').bare_config()
+metals_config.on_attach = function(client, buffer)
+  require('lazylangs.config').lsp.on_attach(client, buffer)
+  require('metals').setup_dap()
+end
+local nvim_metals_group = vim.api.nvim_create_augroup('LL-nvim-metals', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'scala', 'sbt' },
+  callback = function()
+    require('metals').initialize_or_attach(metals_config)
+  end,
+  group = nvim_metals_group,
+})
+
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'scalameta/nvim-metals',
-      dependencies = {
-        'nvim-lua/plenary.nvim',
-      },
-      ft = { 'scala', 'sbt' },
-      opts = function()
-        local metals_config = require('metals').bare_config()
-        metals_config.on_attach = function(client, buffer)
-          require('lazylangs.config').lsp.on_attach(client, buffer)
-          require('metals').setup_dap()
-        end
-
-        return metals_config
-      end,
-      config = function(self, metals_config)
-        local nvim_metals_group = vim.api.nvim_create_augroup('LL-nvim-metals', { clear = true })
-        vim.api.nvim_create_autocmd('FileType', {
-          pattern = self.ft,
-          callback = function()
-            require('metals').initialize_or_attach(metals_config)
-          end,
-          group = nvim_metals_group,
-        })
-      end,
-    },
-  },
   setup = function()
     local debugging_plugin = vim.g.lazylangs.debugging_plugin or nil
     if debugging_plugin == 'nvim-dap' then
