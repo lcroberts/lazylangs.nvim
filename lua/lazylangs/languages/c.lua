@@ -1,13 +1,12 @@
+vim.pack.add { 'https://github.com/p00f/clangd_extensions.nvim' }
+
+require('lazylangs.helpers.lazy').by_ft({ 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' }, function()
+  require('clangd_extensions').setup()
+end)
+
 ---@module "lazylangs"
 ---@type ll.Language
 return {
-  plugins = {
-    {
-      'p00f/clangd_extensions.nvim',
-      ft = { 'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto' },
-      opts = {},
-    },
-  },
   lsp = {
     name = 'clangd',
     server_configuration = {
